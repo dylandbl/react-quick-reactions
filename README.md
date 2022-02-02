@@ -4,6 +4,8 @@ A dependency-free popup component for quick reactions and emojis, à la GitHub's
 To add to your project:
 ```sh
 $ npm install react-quick-reactions
-
-$ yarn add react-quick-reactions quick-reactions
+```
+Or with yarn:
+```sh
+$ yarn add react-quick-reactions
 ```
