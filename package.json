@@ -1,7 +1,7 @@
 {
   "name": "react-quick-reactions",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "description": "A popup React emoji reaction component.",
   "license": "MIT",
   "keywords": [
@@ -11,11 +11,11 @@
     "quick-reactions",
     "emoji-reactions"
   ],
-  "homepage": "https://github.com/DylanBlair/react-quick-reactions#readme",
+  "homepage": "https://github.com/Dylandbl/react-quick-reactions#readme",
   "bugs": {
-    "url": "https://github.com/DylanBlair/react-quick-reactions/issues"
+    "url": "https://github.com/Dylandbl/react-quick-reactions/issues"
   },
-  "repository": "github:DylanBlair/react-quick-reactions",
+  "repository": "github:Dylandbl/react-quick-reactions",
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
