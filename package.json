@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "description": "A popup emoji reaction component for React.",
+  "main": "src/index.tsx",
   "license": "MIT",
   "keywords": [
     "react",
