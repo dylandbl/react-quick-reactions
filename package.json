@@ -2,7 +2,7 @@
   "name": "react-quick-reactions",
   "version": "0.1.0",
   "private": false,
-  "description": "A popup React emoji reaction component.",
+  "description": "A popup emoji reaction component for React.",
   "license": "MIT",
   "keywords": [
     "react",
@@ -43,5 +43,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.39",
+    "typescript": "^4.5.5"
   }
 }
