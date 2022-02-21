@@ -1,5 +1,26 @@
 import { useMemo, useState } from "react";
-import { PopoverProps } from "../types/PopoverProps";
+
+type ReactionObj = {
+  name: string;
+  id?: string;
+  content: string | JSX.Element;
+};
+
+export interface PopoverProps {
+  isVisible: boolean;
+  onClick: (event?: Element) => void;
+  closeButtonAlt?: string | JSX.Element;
+  headerAlt?: string;
+  outerDivClass?: string;
+  closeButtonClass?: string;
+  headerClass?: string;
+  selectionContainerClass?: string;
+  reactionElementClass?: string;
+  reactionsArray: ReactionObj[];
+  changeHeaderOnReactionElemHover?: boolean;
+  hideHeader?: boolean;
+  hideCloseButton?: boolean;
+}
 
 const ReactionPopover = (props: PopoverProps) => {
   const {
