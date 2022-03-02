@@ -32,9 +32,6 @@
     "url": "https://github.com/DylanBlair/react-quick-reactions/issues"
   },
   "homepage": "https://github.com/DylanBlair/react-quick-reactions#readme",
-  "publishConfig": {
-    "registry": "https://www.npmjs.com/package/react-quick-reactions"
-  },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
