@@ -18,4 +18,5 @@ export interface PopoverProps {
   changeHeaderOnReactionElemHover?: boolean;
   hideHeader?: boolean;
   hideCloseButton?: boolean;
+  disableClickAwayToClose?: boolean;
 }

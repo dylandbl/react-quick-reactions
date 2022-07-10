@@ -9,16 +9,14 @@ export const Overlay = styled.div`
   z-index: 2000000000; // This is what Google does, so it's okay.
 `;
 
-export const OuterDiv = styled.div<{ visible: boolean }>`
+export const OuterDiv = styled.div<{ visible: boolean; hideHeader?: boolean }>`
   width: 160px;
-  // height: ${({ visible }) => (visible ? "100px" : "80px")};
-  height: 100px;
+  height: ${({ hideHeader }) => (hideHeader ? "70px" : "100px")};
   position: absolute;
-  // top: -119px;
   bottom: 40px;
   left: 7px;
   padding: 8px;
-  border-radius: 5px 5px 5px 5px;
+  border-radius: 4px;
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06),
     0 3px 8px rgba(0, 0, 0, 0.09);
@@ -41,10 +39,11 @@ export const OuterDiv = styled.div<{ visible: boolean }>`
 export const CloseButton = styled.span`
   color: lightgrey;
   position: absolute;
-  top: 3px;
-  right: 4px;
+  top: 4px;
+  right: 8px;
   font-size: 0.8rem;
   cursor: pointer;
+  font-weight: bold;
 
   :hover {
     color: #969696;
