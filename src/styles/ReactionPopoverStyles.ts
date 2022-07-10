@@ -52,7 +52,7 @@ export const OuterDiv = styled.div<{
   }
 `;
 
-export const CloseButton = styled.span` bool
+export const CloseButton = styled.span`
   color: lightgrey;
   position: absolute;
   top: 4px;
