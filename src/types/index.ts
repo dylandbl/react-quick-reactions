@@ -19,4 +19,5 @@ export interface PopoverProps {
   hideHeader?: boolean;
   hideCloseButton?: boolean;
   disableClickAwayToClose?: boolean;
+  wide?: boolean;
 }
