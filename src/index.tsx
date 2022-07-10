@@ -1,5 +1,3 @@
-const QuickReactions = () => {
-  return <div>Yo</div>;
-};
+import { ReactionPopover } from "./components/ReactionPopover/ReactionPopover";
 
-export default QuickReactions;
+export default ReactionPopover;
