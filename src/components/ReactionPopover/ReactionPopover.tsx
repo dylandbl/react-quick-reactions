@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   OuterDiv,
   CloseButton,
@@ -24,6 +24,7 @@ export const ReactionPopover = (props: PopoverProps) => {
     changeHeaderOnReactionElemHover = true,
     hideHeader,
     hideCloseButton,
+    disableClickAwayToClose,
   } = props;
   const [isPopoverVisible, setIsPopoverVisible] = useState(isVisible);
   const [popoverHeader, setPopoverHeader] = useState(headerAlt);
@@ -33,13 +34,11 @@ export const ReactionPopover = (props: PopoverProps) => {
   }, [isVisible]);
 
   // Resets the popover header to its default value (props.headerAlt).
-  const resetHeader = useMemo(() => {
-    setPopoverHeader(headerAlt);
-  }, [headerAlt]);
+  const resetHeader = () => setPopoverHeader(headerAlt);
 
   return (
     <>
-      {isPopoverVisible && (
+      {!disableClickAwayToClose && isPopoverVisible && (
         <Overlay
           onClick={() => {
             setIsPopoverVisible(false);
@@ -49,6 +48,7 @@ export const ReactionPopover = (props: PopoverProps) => {
       <OuterDiv
         className={"rqr-outer-div " + outerDivClass}
         visible={isPopoverVisible}
+        hideHeader={hideHeader}
       >
         {!hideCloseButton && (
           <CloseButton
@@ -77,7 +77,7 @@ export const ReactionPopover = (props: PopoverProps) => {
                   ? () => setPopoverHeader(item?.name)
                   : () => undefined
               }
-              onMouseLeave={() => resetHeader}
+              onMouseLeave={resetHeader}
             >
               {item?.content}
             </ReactionElement>

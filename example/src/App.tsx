@@ -12,8 +12,6 @@ function App() {
         onClickEmoji={() => {}}
         isVisible={show}
         reactionsArray={emojiArr1}
-        hideHeader
-        hideCloseButton
       />
 
       <button
