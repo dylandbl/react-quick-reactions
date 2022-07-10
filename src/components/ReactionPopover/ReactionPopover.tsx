@@ -25,6 +25,7 @@ export const ReactionPopover = (props: PopoverProps) => {
     hideHeader,
     hideCloseButton,
     disableClickAwayToClose,
+    wide,
   } = props;
   const [isPopoverVisible, setIsPopoverVisible] = useState(isVisible);
   const [popoverHeader, setPopoverHeader] = useState(headerAlt);
@@ -49,6 +50,7 @@ export const ReactionPopover = (props: PopoverProps) => {
         className={"rqr-outer-div " + outerDivClass}
         visible={isPopoverVisible}
         hideHeader={hideHeader}
+        wide={wide}
       >
         {!hideCloseButton && (
           <CloseButton

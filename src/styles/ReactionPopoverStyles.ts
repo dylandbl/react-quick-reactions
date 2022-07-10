@@ -9,12 +9,28 @@ export const Overlay = styled.div`
   z-index: 2000000000; // This is what Google does, so it's okay.
 `;
 
-export const OuterDiv = styled.div<{ visible: boolean; hideHeader?: boolean }>`
-  width: 160px;
-  height: ${({ hideHeader }) => (hideHeader ? "70px" : "100px")};
+const calcHeight = (hideHeader?: boolean, wide?: boolean) => {
+  if (hideHeader) {
+    if (wide) return 35;
+    else return 68;
+  } else {
+    if (wide) return 54;
+    // Default height.
+    else return 90;
+  }
+};
+
+export const OuterDiv = styled.div<{
+  visible: boolean;
+  hideHeader?: boolean;
+  wide?: boolean;
+}>`
+  width: ${({ wide }) => (wide ? "275px" : "136px")};
+  height: ${({ hideHeader, wide }) => calcHeight(hideHeader, wide)}px;
+  overflow: hidden;
   position: absolute;
-  bottom: 40px;
-  left: 7px;
+  top: 10px;
+  left: 10px;
   padding: 8px;
   border-radius: 4px;
   background: white;
@@ -23,20 +39,20 @@ export const OuterDiv = styled.div<{ visible: boolean; hideHeader?: boolean }>`
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   opacity: ${({ visible }) => (visible ? "1" : "0")};
   transition: opacity 0.15s;
-  animation: ${({ visible }) => visible && "PopoverBounce 0.1s ease-in 1"};
   z-index: 2000000000; // This is what Google does, so it's okay.
+  animation: ${({ visible }) => visible && "PopoverBounce 0.1s ease-in 1"};
 
   @keyframes PopoverBounce {
     from {
-      height: 80px;
+      height: ${({ hideHeader, wide }) => calcHeight(hideHeader, wide) - 20}px;
     }
     to {
-      height: 110px;
+      height: ${({ hideHeader, wide }) => calcHeight(hideHeader, wide) + 10}px;
     }
   }
 `;
 
-export const CloseButton = styled.span`
+export const CloseButton = styled.span` bool
   color: lightgrey;
   position: absolute;
   top: 4px;
