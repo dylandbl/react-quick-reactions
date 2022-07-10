@@ -7371,8 +7371,10 @@ react-is@^18.0.0:
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
 "react-quick-reactions@link:..":
-  version "0.0.0"
-  uid ""
+  version "0.3.0"
+  dependencies:
+    "@emotion/react" "^11.9.3"
+    "@emotion/styled" "^11.9.3"
 
 react-refresh@^0.11.0:
   version "0.11.0"
