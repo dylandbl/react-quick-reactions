@@ -19,7 +19,7 @@ function App() {
       <button
         onClick={(e) => {
           e.preventDefault();
-          setShow(true);
+          setShow(!show);
         }}
       >
         Show
