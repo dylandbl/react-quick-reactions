@@ -8,6 +8,7 @@ import {
   Overlay,
 } from "../../styles/ReactionPopoverStyles";
 import { PopoverProps } from "../../types";
+import { CloseSvg } from "../svg/CloseSvg";
 
 export const ReactionPopover = (props: PopoverProps) => {
   const {
@@ -55,7 +56,7 @@ export const ReactionPopover = (props: PopoverProps) => {
             className={"rqr-close-button " + closeButtonClass}
             onClick={() => setIsPopoverVisible(false)}
           >
-            {closeButtonAlt ? closeButtonAlt : "X"}
+            {closeButtonAlt ? closeButtonAlt : <CloseSvg />}
           </CloseButton>
         )}
         {!hideHeader && (
