@@ -53,7 +53,6 @@ export const OuterDiv = styled.div<{
 `;
 
 export const CloseButton = styled.span`
-  color: lightgrey;
   position: absolute;
   top: 4px;
   right: 8px;
@@ -61,12 +60,16 @@ export const CloseButton = styled.span`
   cursor: pointer;
   font-weight: bold;
 
+  fill: lightgrey;
   :hover {
-    color: #969696;
+    > svg {
+      fill: #969696;
+    }
   }
-
   :active {
-    color: #434343;
+    > svg {
+      fill: #434343;
+    }
   }
 `;
 
