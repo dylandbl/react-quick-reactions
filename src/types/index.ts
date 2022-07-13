@@ -6,10 +6,10 @@ type ReactionObj = {
 
 export interface PopoverProps {
   changeHeaderOnReactionElemHover?: boolean;
-  closeButtonAlt?: string | JSX.Element;
+  closeButton?: string | JSX.Element;
   closeButtonClassName?: string;
   disableClickAwayToClose?: boolean;
-  headerAlt?: string;
+  header?: string;
   headerClassName?: string;
   hideCloseButton?: boolean;
   hideHeader?: boolean;

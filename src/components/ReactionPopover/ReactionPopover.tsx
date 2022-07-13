@@ -14,8 +14,8 @@ export const ReactionPopover = (props: PopoverProps) => {
   const {
     isVisible = false,
     onClickEmoji,
-    closeButtonAlt,
-    headerAlt = "Quick reactions",
+    closeButton,
+    header = "Quick reactions",
     outerDivClassName,
     closeButtonClassName,
     headerClassName,
@@ -29,14 +29,14 @@ export const ReactionPopover = (props: PopoverProps) => {
     wide,
   } = props;
   const [isPopoverVisible, setIsPopoverVisible] = useState(isVisible);
-  const [popoverHeader, setPopoverHeader] = useState(headerAlt);
+  const [popoverHeader, setPopoverHeader] = useState(header);
 
   useEffect(() => {
     setIsPopoverVisible(isVisible);
   }, [isVisible]);
 
   // Resets the popover header to its default value (props.headerAlt).
-  const resetHeader = () => setPopoverHeader(headerAlt);
+  const resetHeader = () => setPopoverHeader(header);
 
   return (
     <>
@@ -58,7 +58,7 @@ export const ReactionPopover = (props: PopoverProps) => {
             className={"rqr-close-button " + closeButtonClassName}
             onClick={() => setIsPopoverVisible(false)}
           >
-            {closeButtonAlt ? closeButtonAlt : <CloseSvg />}
+            {closeButton ? closeButton : <CloseSvg />}
           </CloseButton>
         )}
         {!hideHeader && (
