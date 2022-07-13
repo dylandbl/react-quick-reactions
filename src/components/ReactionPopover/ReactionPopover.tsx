@@ -14,13 +14,13 @@ export const ReactionPopover = (props: PopoverProps) => {
   const {
     isVisible = false,
     onClickEmoji,
-    closeButtonAlt = null,
+    closeButtonAlt,
     headerAlt = "Quick reactions",
-    outerDivClass,
-    closeButtonClass,
-    headerClass,
-    selectionContainerClass,
-    reactionElementClass,
+    outerDivClassName,
+    closeButtonClassName,
+    headerClassName,
+    selectionContainerClassName,
+    reactionElementClassName,
     reactionsArray,
     changeHeaderOnReactionElemHover = true,
     hideHeader,
@@ -48,30 +48,30 @@ export const ReactionPopover = (props: PopoverProps) => {
         />
       )}
       <OuterDiv
-        className={"rqr-outer-div " + outerDivClass}
+        className={"rqr-outer-div " + outerDivClassName}
         visible={isPopoverVisible}
         hideHeader={hideHeader}
         wide={wide}
       >
         {!hideCloseButton && (
           <CloseButton
-            className={"rqr-close-button " + closeButtonClass}
+            className={"rqr-close-button " + closeButtonClassName}
             onClick={() => setIsPopoverVisible(false)}
           >
             {closeButtonAlt ? closeButtonAlt : <CloseSvg />}
           </CloseButton>
         )}
         {!hideHeader && (
-          <Header className={"rqr-header " + headerClass}>
+          <Header className={"rqr-header " + headerClassName}>
             {popoverHeader}
           </Header>
         )}
         <SelectionContainer
-          className={"rqr-selection-container " + selectionContainerClass}
+          className={"rqr-selection-container " + selectionContainerClassName}
         >
           {reactionsArray?.map((item, index) => (
             <ReactionElement
-              className={"rqr-reaction-element " + reactionElementClass}
+              className={"rqr-reaction-element " + reactionElementClassName}
               key={item?.name + "-" + index}
               id={item?.id}
               onClick={(e) => onClickEmoji(e.target as Element)}
