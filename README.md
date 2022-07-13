@@ -98,7 +98,7 @@ const emojiArr1 = [
     content: "🤔",
   },
   {
-    id: "thinking",
+    id: "screaming",
     name: "Screaming",
     content: "😱",
   },
