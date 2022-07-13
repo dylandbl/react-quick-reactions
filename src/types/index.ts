@@ -21,5 +21,4 @@ export interface PopoverProps {
   selectionContainerClassName?: string;
   setIsVisible?: (value: boolean) => void;
   wide?: boolean;
-  position?: "top" | "right" | "bottom" | "left";
 }
