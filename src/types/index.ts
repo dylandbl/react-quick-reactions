@@ -15,10 +15,10 @@ export interface PopoverProps {
   hideHeader?: boolean;
   isVisible: boolean;
   onClickEmoji: (event?: Element) => void;
+  onClose: () => void;
   outerDivClassName?: string;
   reactionElementClassName?: string;
   reactionsArray: ReactionObj[];
   selectionContainerClassName?: string;
-  setIsVisible?: (value: boolean) => void;
   wide?: boolean;
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   OuterDiv,
   CloseButton,
@@ -26,37 +26,27 @@ export const ReactionPopover = (props: PopoverProps) => {
     hideHeader,
     hideCloseButton,
     disableClickAwayToClose,
+    onClose,
     wide,
   } = props;
-  const [isPopoverVisible, setIsPopoverVisible] = useState(isVisible);
   const [popoverHeader, setPopoverHeader] = useState(header);
-
-  useEffect(() => {
-    setIsPopoverVisible(isVisible);
-  }, [isVisible]);
 
   // Resets the popover header to its default value (props.headerAlt).
   const resetHeader = () => setPopoverHeader(header);
 
   return (
     <>
-      {!disableClickAwayToClose && isPopoverVisible && (
-        <Overlay
-          onClick={() => {
-            setIsPopoverVisible(false);
-          }}
-        />
-      )}
+      {!disableClickAwayToClose && isVisible && <Overlay onClick={onClose} />}
       <OuterDiv
         className={"rqr-outer-div " + outerDivClassName}
-        visible={isPopoverVisible}
+        visible={isVisible}
         hideHeader={hideHeader}
         wide={wide}
       >
         {!hideCloseButton && (
           <CloseButton
             className={"rqr-close-button " + closeButtonClassName}
-            onClick={() => setIsPopoverVisible(false)}
+            onClick={onClose}
           >
             {closeButton ? closeButton : <CloseSvg />}
           </CloseButton>
