@@ -11,17 +11,19 @@ function App() {
       <QuickReactions
         onClickEmoji={() => {}}
         isVisible={show}
+        onClose={() => setShow(false)}
         reactionsArray={emojiArr1}
+        trigger={
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setShow(!show);
+            }}
+          >
+            Show
+          </button>
+        }
       />
-
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          setShow(!show);
-        }}
-      >
-        Show
-      </button>
     </div>
   );
 }
