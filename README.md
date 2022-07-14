@@ -53,7 +53,7 @@ const App = () => {
 
 | Prop name                         | Type                        | Default value | Description |
 | --------------------------------- | --------------------------- | ------------- | ----------- |
-| `changeHeaderOnReactionElemHover` | `boolean`                   | `true`        | When `true`, changes the header value on emoji mouseover.    |
+| `changeHeaderOnReactionElemHover` | `boolean`                   | `true`        | When `true, the popup's header updates on emoji mouseover to display the emoji's name. |
 | `closeButton`                     | `string \| JSX.Element`     | -             | String or element to replace the default close button.       |
 | `disableClickAwayToClose`         | `boolean`                   | -             | Disables closing by clicking away from the popup.            |
 | `header`                          | `string`                    | `"Quick reactions"` | Alternative default title for popup's header.          |
@@ -98,7 +98,7 @@ const emojiArr1 = [
     content: "🤔",
   },
   {
-    id: "thinking",
+    id: "screaming",
     name: "Screaming",
     content: "😱",
   },
