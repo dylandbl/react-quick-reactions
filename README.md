@@ -28,22 +28,23 @@ const App = () => {
           window.alert(e?.textContent);
         }}
         isVisible={isVisible}
-        setIsVisible={setIsVisible}
+        onClose={() => setIsVisible(false)}
         reactionsArray={[
           {
             name: "Laughing",
             content: "😂",
           }
         ]}
+        trigger={
+         <button
+            onClick={() => {
+              setIsVisible(true);
+            }}
+          >
+            Show
+          </button>
+        }
       />
-      
-     <button
-        onClick={() => {
-          setIsVisible(true);
-        }}
-      >
-        Show
-      </button>
     </div>
   );
 }
@@ -60,8 +61,8 @@ const App = () => {
 | `hideCloseButton`                 | `boolean`                   | -             | Hides the close button.                                      |
 | `hideHeader`                      | `boolean`                   | -             | Hides the header                                             |
 | `isVisible`                       | `boolean`                   | `false`       | Determines if popup is visible.                              |
-| `setIsVisible`                    | `(value: boolean) => void`  | -             | `useState` function to set visibility state.                 |
 | `onClickEmoji`                    | `(value?: Element) => void` | -             | Function called when an emoji is clicked.                    |
+| `onClose`                         | `() => void`                | -             | Function called on popup close.                              |
 | `reactionsArray`                  | [`ReactionObj[]`](#reactionobj) | -         | Array of emojis.                                             |
 | `wide`                            | `boolean`                   | -             | Makes the popup wide instead of tall. Eight emojis wide, by default. |
 | `closeButtonClassName`            | `string`                    | -             | Optional classes for the close button span.                  |
@@ -73,7 +74,7 @@ const App = () => {
 
 ```TSX
 type ReactionObj = {
-  id?: string;  // Used as element's ID.
+  id?: string;  // Used as element's #id.
   name: string; // Displayed in popup header.
   content: string | JSX.Element;
 };
