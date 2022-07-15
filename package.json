@@ -1,6 +1,6 @@
 {
   "name": "react-quick-reactions",
-  "version": "0.7.1",
+  "version": "0.8.0",
   "description": "A popup emoji-reaction component for React.",
   "private": false,
   "main": "./lib/cjs/index.js",
