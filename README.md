@@ -60,7 +60,7 @@ const App = () => {
 | `header`                          | `string`                    | `"Quick reactions"` | Alternative default title for popup's header.          |
 | `hideCloseButton`                 | `boolean`                   | -             | Hides the close button.                                      |
 | `hideHeader`                      | `boolean`                   | -             | Hides the header                                             |
-| `isVisible`                       | `boolean`                   | `false`       | Determines if popup is visible.                              |
+| `isVisible`                       | `boolean`                   | `false`       | Determines if popup visibility.                              |
 | `onClickEmoji`                    | `(value?: Element) => void` | -             | Function called when an emoji is clicked.                    |
 | `onClose`                         | `() => void`                | -             | Function called on popup close.                              |
 | `reactionsArray`                  | [`ReactionObj[]`](#reactionobj) | -         | Array of emojis.                                             |
