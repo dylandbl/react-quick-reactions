@@ -12,6 +12,7 @@ export const Overlay = styled.div`
 // Calculate width of `wide` popup.
 const calcWidth = (arrayLength: number) => {
   if (arrayLength > 8) arrayLength = 8;
+  if (arrayLength === 0) arrayLength = 1;
   // (34px per item) + 17px
   return 34 * arrayLength + 17;
 };
