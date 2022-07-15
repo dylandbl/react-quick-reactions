@@ -1,23 +1,24 @@
 type ReactionObj = {
-  name: string;
   id?: string;
+  name: string;
   content: string | JSX.Element;
 };
 
 export interface PopoverProps {
+  changeHeaderOnReactionElemHover?: boolean;
+  closeButton?: string | JSX.Element;
+  closeButtonClassName?: string;
+  disableClickAwayToClose?: boolean;
+  header?: string;
+  headerClassName?: string;
+  hideCloseButton?: boolean;
+  hideHeader?: boolean;
   isVisible: boolean;
   onClickEmoji: (event?: Element) => void;
-  closeButtonAlt?: string | JSX.Element;
-  headerAlt?: string;
-  outerDivClass?: string;
-  closeButtonClass?: string;
-  headerClass?: string;
-  selectionContainerClass?: string;
-  reactionElementClass?: string;
+  onClose: () => void;
+  outerDivClassName?: string;
+  reactionElementClassName?: string;
   reactionsArray: ReactionObj[];
-  changeHeaderOnReactionElemHover?: boolean;
-  hideHeader?: boolean;
-  hideCloseButton?: boolean;
-  disableClickAwayToClose?: boolean;
+  selectionContainerClassName?: string;
   wide?: boolean;
 }
