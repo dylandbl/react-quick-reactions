@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const RQRSpan = styled.span`
+export const QuickReactionsSpan = styled.span`
   display: inline-block;
   position: relative;
 `;

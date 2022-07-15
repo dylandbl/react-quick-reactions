@@ -1,20 +1,20 @@
 import { ReactNode } from "react";
 import { ReactionPopover } from "./components/ReactionPopover/ReactionPopover";
-import { RQRSpan } from "./styles/RqrStyles";
+import { QuickReactionsSpan } from "./styles/RqrStyles";
 import { PopoverProps } from "./types";
 
-interface RQRProps extends PopoverProps {
+interface QuickReactionsProps extends PopoverProps {
   trigger: ReactNode;
 }
-const RQR = (props: RQRProps) => {
-  const { trigger } = props;
+const QuickReactions = (props: QuickReactionsProps) => {
+  const { trigger, isVisible } = props;
 
   return (
-    <RQRSpan>
+    <QuickReactionsSpan>
       {trigger}
-      <ReactionPopover {...props} />
-    </RQRSpan>
+      {isVisible && <ReactionPopover {...props} />}
+    </QuickReactionsSpan>
   );
 };
 
-export default RQR;
+export default QuickReactions;
