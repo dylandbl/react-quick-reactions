@@ -60,11 +60,11 @@ const App = () => {
 | `header`                          | `string`                    | `"Quick reactions"` | Alternative default title for popup's header.          |
 | `hideCloseButton`                 | `boolean`                   | -             | Hides the close button.                                      |
 | `hideHeader`                      | `boolean`                   | -             | Hides the header                                             |
-| `isVisible`                       | `boolean`                   | `false`       | Determines if popup visibility.                              |
+| `isVisible`                       | `boolean`                   | `false`       | Determines popup visibility.                                 |
 | `onClickEmoji`                    | `(value?: Element) => void` | -             | Function called when an emoji is clicked.                    |
 | `onClose`                         | `() => void`                | -             | Function called on popup close.                              |
 | `reactionsArray`                  | [`ReactionObj[]`](#reactionobj) | -         | Array of emojis.                                             |
-| `wide`                            | `boolean`                   | -             | Makes the popup wide instead of tall. Eight emojis wide, by default. |
+| `wide`                            | `boolean`                   | -             | Makes the popup wide instead of tall. Eight emojis wide by default. |
 | `closeButtonClassName`            | `string`                    | -             | Optional classes for the close button span.                  |
 | `outerDivClassName`               | `string`                    | -             | Optional classes for the popup container div.                |
 | `reactionElementClassName`        | `string`                    | -             | Optional classes for the emoji spans.                        |
