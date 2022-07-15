@@ -38,7 +38,9 @@ export const ReactionPopover = (props: PopoverProps) => {
     <>
       {!disableClickAwayToClose && isVisible && <Overlay onClick={onClose} />}
       <OuterDiv
-        className={"rqr-outer-div " + outerDivClassName}
+        className={
+          "rqr-outer-div" + (outerDivClassName ? " " + outerDivClassName : "")
+        }
         visible={isVisible}
         hideHeader={hideHeader}
         wide={wide}
@@ -46,7 +48,10 @@ export const ReactionPopover = (props: PopoverProps) => {
       >
         {!hideCloseButton && (
           <CloseButton
-            className={"rqr-close-button " + closeButtonClassName}
+            className={
+              "rqr-close-button" +
+              (closeButtonClassName ? " " + closeButtonClassName : "")
+            }
             onClick={onClose}
             wide={wide}
           >
@@ -54,16 +59,28 @@ export const ReactionPopover = (props: PopoverProps) => {
           </CloseButton>
         )}
         {!hideHeader && (
-          <Header className={"rqr-header " + headerClassName}>
+          <Header
+            className={
+              "rqr-header" + (headerClassName ? " " + headerClassName : "")
+            }
+          >
             {popoverHeader}
           </Header>
         )}
         <SelectionContainer
-          className={"rqr-selection-container " + selectionContainerClassName}
+          className={
+            "rqr-selection-container" +
+            (selectionContainerClassName
+              ? " " + selectionContainerClassName
+              : "")
+          }
         >
           {reactionsArray?.map((item, index) => (
             <ReactionElement
-              className={"rqr-reaction-element " + reactionElementClassName}
+              className={
+                "rqr-reaction-element" +
+                (reactionElementClassName ? " " + reactionElementClassName : "")
+              }
               key={item?.name + "-" + index}
               id={item?.id}
               onClick={(e) => onClickReaction(e.target as Element)}
