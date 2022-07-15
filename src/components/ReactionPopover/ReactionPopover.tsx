@@ -42,11 +42,13 @@ export const ReactionPopover = (props: PopoverProps) => {
         visible={isVisible}
         hideHeader={hideHeader}
         wide={wide}
+        arrayLength={reactionsArray.length}
       >
         {!hideCloseButton && (
           <CloseButton
             className={"rqr-close-button " + closeButtonClassName}
             onClick={onClose}
+            wide={wide}
           >
             {closeButton ? closeButton : <CloseSvg />}
           </CloseButton>
