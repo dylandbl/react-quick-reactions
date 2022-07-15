@@ -9,6 +9,14 @@ export const Overlay = styled.div`
   z-index: 2000000000; // This is what Google does, so it's okay.
 `;
 
+// Calculate width of `wide` popup.
+const calcWidth = (arrayLength: number) => {
+  if (arrayLength > 8) arrayLength = 8;
+  // (34px per item) + 17px
+  return 34 * arrayLength + 17;
+};
+
+// Calculates height according to `wide` and `header` state.
 const calcHeight = (hideHeader?: boolean, wide?: boolean) => {
   if (hideHeader) {
     if (wide) return 35;
@@ -24,8 +32,10 @@ export const OuterDiv = styled.div<{
   visible: boolean;
   hideHeader?: boolean;
   wide?: boolean;
+  arrayLength: number;
 }>`
-  width: ${({ wide }) => (wide ? "275px" : "136px")};
+  width: ${({ wide, arrayLength = 8 }) =>
+    wide ? calcWidth(arrayLength) + "px" : "136px"};
   height: ${({ hideHeader, wide }) => calcHeight(hideHeader, wide)}px;
   overflow: hidden;
   position: absolute;
@@ -50,10 +60,10 @@ export const OuterDiv = styled.div<{
   }
 `;
 
-export const CloseButton = styled.span`
+export const CloseButton = styled.span<{ wide?: boolean }>`
   position: absolute;
   top: 4px;
-  right: 8px;
+  right: ${({ wide }) => (wide ? 4 : 8)}px;
   font-size: 0.8rem;
   cursor: pointer;
   font-weight: bold;
