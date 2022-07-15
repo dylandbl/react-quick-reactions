@@ -14,7 +14,7 @@ export interface PopoverProps {
   hideCloseButton?: boolean;
   hideHeader?: boolean;
   isVisible: boolean;
-  onClickEmoji: (event?: Element) => void;
+  onClickReaction: (event?: Element) => void;
   onClose: () => void;
   outerDivClassName?: string;
   reactionElementClassName?: string;

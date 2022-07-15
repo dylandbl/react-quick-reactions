@@ -13,7 +13,7 @@ import { CloseSvg } from "../svg/CloseSvg";
 export const ReactionPopover = (props: PopoverProps) => {
   const {
     isVisible = false,
-    onClickEmoji,
+    onClickReaction,
     closeButton,
     header = "Quick reactions",
     outerDivClassName,
@@ -66,7 +66,7 @@ export const ReactionPopover = (props: PopoverProps) => {
               className={"rqr-reaction-element " + reactionElementClassName}
               key={item?.name + "-" + index}
               id={item?.id}
-              onClick={(e) => onClickEmoji(e.target as Element)}
+              onClick={(e) => onClickReaction(e.target as Element)}
               onMouseEnter={
                 changeHeaderOnReactionElemHover
                   ? () => setPopoverHeader(item?.name)
