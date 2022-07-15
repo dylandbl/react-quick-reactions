@@ -29,8 +29,6 @@ export const OuterDiv = styled.div<{
   height: ${({ hideHeader, wide }) => calcHeight(hideHeader, wide)}px;
   overflow: hidden;
   position: absolute;
-  top: 10px;
-  left: 10px;
   padding: 8px;
   border-radius: 4px;
   background: white;
