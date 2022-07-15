@@ -12,18 +12,23 @@ export const Overlay = styled.div`
 // Calculate width of `wide` popup.
 const calcWidth = (arrayLength: number) => {
   if (arrayLength > 8) arrayLength = 8;
+  if (arrayLength === 0) arrayLength = 1;
   // (34px per item) + 17px
   return 34 * arrayLength + 17;
 };
 
-// Calculates height according to `wide` and `header` state.
-const calcHeight = (hideHeader?: boolean, wide?: boolean) => {
+// Calculates height according to `wide`, `header`, and reactionArray.length.
+const calcHeight = (
+  arrayLength: number,
+  hideHeader?: boolean,
+  wide?: boolean
+) => {
   if (hideHeader) {
-    if (wide) return 35;
+    if (wide || arrayLength < 5) return 35;
     else return 68;
   } else {
-    if (wide) return 54;
-    // Default height.
+    if (wide || arrayLength < 5) return 54;
+    // Default popup height is 90.
     else return 90;
   }
 };
@@ -36,7 +41,8 @@ export const OuterDiv = styled.div<{
 }>`
   width: ${({ wide, arrayLength = 8 }) =>
     wide ? calcWidth(arrayLength) + "px" : "136px"};
-  height: ${({ hideHeader, wide }) => calcHeight(hideHeader, wide)}px;
+  height: ${({ hideHeader, wide, arrayLength }) =>
+    calcHeight(arrayLength, hideHeader, wide)}px;
   overflow: hidden;
   position: absolute;
   padding: 8px;
@@ -52,10 +58,12 @@ export const OuterDiv = styled.div<{
 
   @keyframes PopoverBounce {
     from {
-      height: ${({ hideHeader, wide }) => calcHeight(hideHeader, wide) - 20}px;
+      height: ${({ hideHeader, wide, arrayLength }) =>
+        calcHeight(arrayLength, hideHeader, wide) - 20}px;
     }
     to {
-      height: ${({ hideHeader, wide }) => calcHeight(hideHeader, wide) + 10}px;
+      height: ${({ hideHeader, wide, arrayLength }) =>
+        calcHeight(arrayLength, hideHeader, wide) + 10}px;
     }
   }
 `;
