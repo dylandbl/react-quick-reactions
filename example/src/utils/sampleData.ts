@@ -32,3 +32,22 @@ export const emojiArr1 = [
     content: "👎",
   },
 ];
+
+export const emojiArr2 = [
+  {
+    name: "Love it!",
+    content: "❤️",
+  },
+  {
+    name: "Sparkle!",
+    content: "✨",
+  },
+  {
+    name: "~Diamond~",
+    content: "💎",
+  },
+  {
+    name: "Grrrreat!",
+    content: "🚀",
+  },
+];
