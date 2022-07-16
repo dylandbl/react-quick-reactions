@@ -43,17 +43,20 @@ export const OuterDiv = styled.div<{
     wide ? calcWidth(arrayLength) + "px" : "136px"};
   height: ${({ hideHeader, wide, arrayLength }) =>
     calcHeight(arrayLength, hideHeader, wide)}px;
-  overflow: hidden;
-  position: absolute;
   padding: 8px;
+  z-index: 2000000000; // This is what Google does, so it's okay.
+
   border-radius: 4px;
+  border: 1px solid #c6d6eb;
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06),
     0 3px 8px rgba(0, 0, 0, 0.09);
+
+  overflow: hidden;
+  position: absolute;
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   opacity: ${({ visible }) => (visible ? "1" : "0")};
   transition: opacity 0.15s;
-  z-index: 2000000000; // This is what Google does, so it's okay.
   animation: ${({ visible }) => visible && "PopoverBounce 0.1s ease-in 1"};
 
   @keyframes PopoverBounce {
