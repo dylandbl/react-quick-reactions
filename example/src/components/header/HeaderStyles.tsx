@@ -36,7 +36,7 @@ export const HeaderDiv = styled.div`
 
 export const TitleDiv = styled.div`
   font-size: 1.4rem;
-  cursor: pointer;
+  cursor: default;
 `;
 
 export const RightSideContainer = styled.div`
@@ -64,6 +64,6 @@ export const UserIconDiv = styled.div<{ background: string }>`
 `;
 
 export const HeaderEmojiContainer = styled.div`
-  width: 30px;
+  width: 24px;
   display: inline-block;
 `;
