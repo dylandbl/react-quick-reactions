@@ -1,4 +1,7 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { TransformValuesType } from "../components/ReactionPopover/ReactionPopover";
+import { PlacementType } from "../types";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -33,17 +36,90 @@ const calcHeight = (
   }
 };
 
+const calculatePopupTranslate = (
+  triggerTransformValues: TransformValuesType,
+  popupWidth: number,
+  popupHeight: number,
+  placement: PlacementType
+) => {
+  // x is relative to the view, y is relative to the trigger element.
+  let x = 0;
+  let y = 0;
+  const margin = 10;
+
+  if (placement === "top-start") {
+    x = triggerTransformValues.left;
+    y = triggerTransformValues.height * -1 - popupHeight - margin;
+  }
+  if (placement === "top") {
+    x =
+      triggerTransformValues.left +
+      (triggerTransformValues.width - popupWidth) / 2;
+    y = triggerTransformValues.height * -1 - popupHeight - margin;
+  }
+  if (placement === "top-end") {
+    x = triggerTransformValues.x + (triggerTransformValues.width - popupWidth);
+    y = triggerTransformValues.height * -1 - popupHeight - margin;
+  }
+  if (placement === "left-start") {
+    x = triggerTransformValues.x - popupWidth - margin;
+    y = triggerTransformValues.height * -1;
+  }
+  if (placement === "left") {
+    x = triggerTransformValues.x - popupWidth - margin;
+    y = (popupHeight / 2 + triggerTransformValues.height / 2) * -1;
+  }
+  if (placement === "left-end") {
+    x = triggerTransformValues.x - popupWidth - margin;
+    y = popupHeight * -1;
+  }
+
+  if (placement === "right-start") {
+    x = triggerTransformValues.left + triggerTransformValues.width + margin;
+    y = triggerTransformValues.height * -1;
+  }
+  if (placement === "right") {
+    x = triggerTransformValues.left + triggerTransformValues.width + margin;
+    y = (popupHeight / 2 + triggerTransformValues.height / 2) * -1;
+  }
+  if (placement === "right-end") {
+    x = triggerTransformValues.left + triggerTransformValues.width + margin;
+    y = popupHeight * -1;
+  }
+
+  if (placement === "bottom-start") {
+    x = triggerTransformValues.left;
+    y = margin;
+  }
+  if (placement === "bottom") {
+    x =
+      triggerTransformValues.left +
+      (triggerTransformValues.width - popupWidth) / 2;
+    y = margin;
+  }
+  if (placement === "bottom-end") {
+    x = triggerTransformValues.x + (triggerTransformValues.width - popupWidth);
+    y = margin;
+  }
+
+  return `${x}px, ${y}px`;
+};
+
 export const OuterDiv = styled.div<{
   visible: boolean;
   hideHeader?: boolean;
   wide?: boolean;
   arrayLength: number;
+  triggerTransformValues?: TransformValuesType;
+  placement: PlacementType;
 }>`
   width: ${({ wide, arrayLength = 8 }) =>
     wide ? calcWidth(arrayLength) + "px" : "136px"};
   height: ${({ hideHeader, wide, arrayLength }) =>
     calcHeight(arrayLength, hideHeader, wide)}px;
-  padding: 8px;
+  position: fixed;
+  right: 0;
+  left: 0;
   z-index: 2000000000; // This is what Google does, so it's okay.
 
   border-radius: 4px;
@@ -53,11 +129,25 @@ export const OuterDiv = styled.div<{
     0 3px 8px rgba(0, 0, 0, 0.09);
 
   overflow: hidden;
-  position: absolute;
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   opacity: ${({ visible }) => (visible ? "1" : "0")};
   transition: opacity 0.15s;
   animation: ${({ visible }) => visible && "PopoverBounce 0.1s ease-in 1"};
+
+  ${({ triggerTransformValues, placement, arrayLength, hideHeader, wide }) =>
+    triggerTransformValues &&
+    css`
+      transform: translate(
+        ${calculatePopupTranslate(
+          triggerTransformValues,
+          // This solution assumes the height and width are calculated based on the standards I defined,
+          // not on actual height/width, which could be changed by the user.
+          wide ? calcWidth(arrayLength) : 136,
+          calcHeight(arrayLength, hideHeader, wide),
+          placement
+        )}
+      );
+    `}
 
   @keyframes PopoverBounce {
     from {
