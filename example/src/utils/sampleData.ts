@@ -43,11 +43,42 @@ export const emojiArr2 = [
     content: "✨",
   },
   {
-    name: "~Diamond~",
-    content: "💎",
+    name: "~Magical~",
+    content: "🌈",
   },
   {
     name: "Grrrreat!",
+    content: "🚀",
+  },
+];
+
+export const commentEmojis = [
+  {
+    name: "Thumbs up",
+    content: "👍",
+  },
+  {
+    name: "Thumbs down",
+    content: "👎",
+  },
+  {
+    name: "Love",
+    content: "❤️",
+  },
+  {
+    name: "Looking",
+    content: "👀",
+  },
+  {
+    name: "Thinking",
+    content: "🤔",
+  },
+  {
+    name: "Smiling",
+    content: "🙂",
+  },
+  {
+    name: "Liftoff",
     content: "🚀",
   },
 ];
