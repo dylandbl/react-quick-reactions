@@ -1,29 +1,17 @@
-import "./App.css";
-import QuickReactions from "react-quick-reactions";
-import { emojiArr1 } from "./utils/sampleData";
-import { useState } from "react";
+import { Header } from "./components/header/Header";
+import { Body } from "./styles/AppStyles";
+import { Footer } from "./components/footer/Footer";
+import { Showcase } from "./components/showcaseComponents/Showcase";
 
 function App() {
-  const [show, setShow] = useState(true);
-
   return (
     <div className="App">
-      <QuickReactions
-        onClickEmoji={() => {}}
-        isVisible={show}
-        onClose={() => setShow(false)}
-        reactionsArray={emojiArr1}
-        trigger={
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              setShow(!show);
-            }}
-          >
-            Show
-          </button>
-        }
-      />
+      <Header />
+
+      <Body>
+        <Showcase />
+      </Body>
+      <Footer />
     </div>
   );
 }
