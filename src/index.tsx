@@ -1,18 +1,23 @@
-import { ReactNode } from "react";
+import { cloneElement, ReactElement, useRef } from "react";
 import { ReactionPopover } from "./components/ReactionPopover/ReactionPopover";
 import { QuickReactionsSpan } from "./styles/RqrStyles";
-import { PopoverProps } from "./types";
+import { RQRProps } from "./types";
 
-interface QuickReactionsProps extends PopoverProps {
-  trigger: ReactNode;
+interface QuickReactionsProps extends RQRProps {
+  trigger: ReactElement;
 }
 const QuickReactions = (props: QuickReactionsProps) => {
   const { trigger, isVisible } = props;
+  const triggerRef = useRef<HTMLElement>(null);
+  const clonedTrigger = cloneElement(trigger, { ref: triggerRef });
+  const triggerPosition = triggerRef.current?.getBoundingClientRect();
 
   return (
     <QuickReactionsSpan>
-      {trigger}
-      {isVisible && <ReactionPopover {...props} />}
+      {clonedTrigger}
+      {isVisible && (
+        <ReactionPopover triggerTransformValues={triggerPosition} {...props} />
+      )}
     </QuickReactionsSpan>
   );
 };

@@ -1,4 +1,8 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { TransformValuesType } from "../components/ReactionPopover/ReactionPopover";
+import { PlacementType } from "../types";
+import { calculatePopupTranslate, calcWidth, calcHeight } from "./styleUtils";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -9,54 +13,49 @@ export const Overlay = styled.div`
   z-index: 2000000000; // This is what Google does, so it's okay.
 `;
 
-// Calculate width of `wide` popup.
-const calcWidth = (arrayLength: number) => {
-  if (arrayLength > 8) arrayLength = 8;
-  if (arrayLength === 0) arrayLength = 1;
-  // (34px per item) + 17px
-  return 34 * arrayLength + 17;
-};
-
-// Calculates height according to `wide`, `header`, and reactionArray.length.
-const calcHeight = (
-  arrayLength: number,
-  hideHeader?: boolean,
-  wide?: boolean
-) => {
-  if (hideHeader) {
-    if (wide || arrayLength < 5) return 35;
-    else return 68;
-  } else {
-    if (wide || arrayLength < 5) return 54;
-    // Default popup height is 90.
-    else return 90;
-  }
-};
-
 export const OuterDiv = styled.div<{
   visible: boolean;
   hideHeader?: boolean;
   wide?: boolean;
   arrayLength: number;
+  triggerTransformValues?: TransformValuesType;
+  placement: PlacementType;
 }>`
   width: ${({ wide, arrayLength = 8 }) =>
-    wide ? calcWidth(arrayLength) + "px" : "136px"};
+    wide ? calcWidth(arrayLength) + "px" : "150px"};
   height: ${({ hideHeader, wide, arrayLength }) =>
     calcHeight(arrayLength, hideHeader, wide)}px;
-  overflow: hidden;
-  position: absolute;
-  padding: 8px;
+  position: fixed;
+  z-index: 2000000000; // This is what Google does, so it's okay.
+
   border-radius: 4px;
+  border: 1px solid #c6d6eb;
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.06),
     0 3px 8px rgba(0, 0, 0, 0.09);
+
+  overflow: hidden;
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   opacity: ${({ visible }) => (visible ? "1" : "0")};
   transition: opacity 0.15s;
-  z-index: 2000000000; // This is what Google does, so it's okay.
-  animation: ${({ visible }) => visible && "PopoverBounce 0.1s ease-in 1"};
+  animation: ${({ visible }) => visible && "drop 0.1s ease-in 1"};
 
-  @keyframes PopoverBounce {
+  ${({ triggerTransformValues, placement, arrayLength, hideHeader, wide }) =>
+    triggerTransformValues &&
+    css`
+      transform: translate(
+        ${calculatePopupTranslate(
+          triggerTransformValues,
+          // This solution assumes the height and width are calculated based on the standards I defined,
+          // not on actual height/width, which could be changed by the user.
+          wide ? calcWidth(arrayLength) : 150,
+          calcHeight(arrayLength, hideHeader, wide),
+          placement
+        )}
+      );
+    `}
+
+  @keyframes drop {
     from {
       height: ${({ hideHeader, wide, arrayLength }) =>
         calcHeight(arrayLength, hideHeader, wide) - 20}px;
@@ -91,6 +90,9 @@ export const CloseButton = styled.span<{ wide?: boolean }>`
 
 export const Header = styled.div`
   border-bottom: 1px solid lightGrey;
+  width: calc(100% - 16px);
+  left: 8px;
+  position: relative;
 `;
 
 export const SelectionContainer = styled.div`

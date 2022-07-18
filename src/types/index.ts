@@ -4,7 +4,21 @@ type ReactionObj = {
   content: string | JSX.Element;
 };
 
-export interface PopoverProps {
+export type PlacementType =
+  | "top-start"
+  | "top"
+  | "top-end"
+  | "left-start"
+  | "left"
+  | "left-end"
+  | "right-start"
+  | "right"
+  | "right-end"
+  | "bottom-start"
+  | "bottom"
+  | "bottom-end";
+
+export interface RQRProps {
   changeHeaderOnReactionElemHover?: boolean;
   closeButton?: string | JSX.Element;
   closeButtonClassName?: string;
@@ -17,6 +31,7 @@ export interface PopoverProps {
   onClickReaction: (event?: Element) => void;
   onClose: () => void;
   outerDivClassName?: string;
+  placement?: PlacementType;
   reactionElementClassName?: string;
   reactionsArray: ReactionObj[];
   selectionContainerClassName?: string;
