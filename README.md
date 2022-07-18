@@ -61,14 +61,32 @@ const App = () => {
 | `hideCloseButton`                 | `boolean`                   | -             | Hides the close button.                                      |
 | `hideHeader`                      | `boolean`                   | -             | Hides the header                                             |
 | `isVisible`                       | `boolean`                   | `false`       | Determines popup visibility.                                 |
-| `onClickEmoji`                    | `(value?: Element) => void` | -             | Function called when an emoji is clicked.                    |
+| `onClickReaction`                 | `(value?: Element) => void` | -             | Function called when an emoji is clicked.                    |
 | `onClose`                         | `() => void`                | -             | Function called on popup close.                              |
+| `placement`                       | [`PlacementType`](#placementtype) | `"bottom-start"` | Positions the popup relative to the `trigger`.      |
 | `reactionsArray`                  | [`ReactionObj[]`](#reactionobj) | -         | Array of emojis.                                             |
 | `wide`                            | `boolean`                   | -             | Makes the popup wide instead of tall. Eight emojis wide by default. |
 | `closeButtonClassName`            | `string`                    | -             | Optional classes for the close button span.                  |
 | `outerDivClassName`               | `string`                    | -             | Optional classes for the popup container div.                |
 | `reactionElementClassName`        | `string`                    | -             | Optional classes for the emoji spans.                        |
 | `selectionContainerClassName`     | `string`                    | -             | Optional classes for the div containing the array of emojis. |
+
+### `PlacementType`
+```TSX
+type PlacementType =
+  | "top-start"
+  | "top"
+  | "top-end"
+  | "left-start"
+  | "left"
+  | "left-end"
+  | "right-start"
+  | "right"
+  | "right-end"
+  | "bottom-start"
+  | "bottom"
+  | "bottom-end";
+```
 
 ### `ReactionObj`
 

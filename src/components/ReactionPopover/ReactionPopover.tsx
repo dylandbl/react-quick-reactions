@@ -7,8 +7,23 @@ import {
   ReactionElement,
   Overlay,
 } from "../../styles/ReactionPopoverStyles";
-import { PopoverProps } from "../../types";
+import { RQRProps } from "../../types";
 import { CloseSvg } from "../svg/CloseSvg";
+
+export type TransformValuesType = {
+  bottom: number;
+  height: number;
+  left: number;
+  right: number;
+  top: number;
+  width: number;
+  x: number;
+  y: number;
+};
+
+interface PopoverProps extends RQRProps {
+  triggerTransformValues?: TransformValuesType;
+}
 
 export const ReactionPopover = (props: PopoverProps) => {
   const {
@@ -28,6 +43,8 @@ export const ReactionPopover = (props: PopoverProps) => {
     disableClickAwayToClose,
     onClose,
     wide,
+    triggerTransformValues,
+    placement = "bottom-start",
   } = props;
   const [popoverHeader, setPopoverHeader] = useState(header);
 
@@ -38,6 +55,8 @@ export const ReactionPopover = (props: PopoverProps) => {
     <>
       {!disableClickAwayToClose && isVisible && <Overlay onClick={onClose} />}
       <OuterDiv
+        triggerTransformValues={triggerTransformValues}
+        placement={placement}
         className={
           "rqr-outer-div" + (outerDivClassName ? " " + outerDivClassName : "")
         }
@@ -46,6 +65,16 @@ export const ReactionPopover = (props: PopoverProps) => {
         wide={wide}
         arrayLength={reactionsArray.length}
       >
+        {!hideHeader && (
+          <Header
+            className={
+              "rqr-header" + (headerClassName ? " " + headerClassName : "")
+            }
+          >
+            {popoverHeader}
+          </Header>
+        )}
+
         {!hideCloseButton && (
           <CloseButton
             className={
@@ -57,15 +86,6 @@ export const ReactionPopover = (props: PopoverProps) => {
           >
             {closeButton ? closeButton : <CloseSvg />}
           </CloseButton>
-        )}
-        {!hideHeader && (
-          <Header
-            className={
-              "rqr-header" + (headerClassName ? " " + headerClassName : "")
-            }
-          >
-            {popoverHeader}
-          </Header>
         )}
         <SelectionContainer
           className={
