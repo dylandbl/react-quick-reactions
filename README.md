@@ -61,7 +61,7 @@ const App = () => {
 | `hideCloseButton`                 | `boolean`                   | -             | Hides the close button.                                      |
 | `hideHeader`                      | `boolean`                   | -             | Hides the header                                             |
 | `isVisible`                       | `boolean`                   | `false`       | Determines popup visibility.                                 |
-| `onClickEmoji`                    | `(value?: Element) => void` | -             | Function called when an emoji is clicked.                    |
+| `onClickReaction`                 | `(value?: Element) => void` | -             | Function called when an emoji is clicked.                    |
 | `onClose`                         | `() => void`                | -             | Function called on popup close.                              |
 | `placement`                       | [`PlacementType`](#placementtype) | `"bottom-start"` | Positions the popup relative to the `trigger`.      |
 | `reactionsArray`                  | [`ReactionObj[]`](#reactionobj) | -         | Array of emojis.                                             |
