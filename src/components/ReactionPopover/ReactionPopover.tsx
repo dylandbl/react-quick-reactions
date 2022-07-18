@@ -65,6 +65,16 @@ export const ReactionPopover = (props: PopoverProps) => {
         wide={wide}
         arrayLength={reactionsArray.length}
       >
+        {!hideHeader && (
+          <Header
+            className={
+              "rqr-header" + (headerClassName ? " " + headerClassName : "")
+            }
+          >
+            {popoverHeader}
+          </Header>
+        )}
+
         {!hideCloseButton && (
           <CloseButton
             className={
@@ -76,15 +86,6 @@ export const ReactionPopover = (props: PopoverProps) => {
           >
             {closeButton ? closeButton : <CloseSvg />}
           </CloseButton>
-        )}
-        {!hideHeader && (
-          <Header
-            className={
-              "rqr-header" + (headerClassName ? " " + headerClassName : "")
-            }
-          >
-            {popoverHeader}
-          </Header>
         )}
         <SelectionContainer
           className={
