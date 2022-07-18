@@ -1,11 +1,13 @@
+import { PlacementType } from "../../../lib/esm/types";
+
 export const emojiArr1 = [
   {
     name: "Laughing",
     content: "😂",
   },
   {
-    name: "Crying",
-    content: "😢",
+    name: "Cool",
+    content: "😎",
   },
   {
     name: "Thinking",
@@ -16,8 +18,8 @@ export const emojiArr1 = [
     content: "😱",
   },
   {
-    name: "Eyes",
-    content: "👀",
+    name: "Freezing",
+    content: "🥶",
   },
   {
     name: "Heart",
@@ -28,8 +30,8 @@ export const emojiArr1 = [
     content: "👍",
   },
   {
-    name: "Thumbs down",
-    content: "👎",
+    name: "OK",
+    content: "👌",
   },
 ];
 
@@ -58,8 +60,8 @@ export const commentEmojis = [
     content: "👍",
   },
   {
-    name: "Thumbs down",
-    content: "👎",
+    name: "Heart eyes",
+    content: "😍",
   },
   {
     name: "Love",
@@ -81,4 +83,19 @@ export const commentEmojis = [
     name: "Liftoff",
     content: "🚀",
   },
+];
+
+export const positionOptions: PlacementType[] = [
+  "top-start",
+  "top",
+  "top-end",
+  "left-start",
+  "left",
+  "left-end",
+  "right-start",
+  "right",
+  "right-end",
+  "bottom-start",
+  "bottom",
+  "bottom-end",
 ];
