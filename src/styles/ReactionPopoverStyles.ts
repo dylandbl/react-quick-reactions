@@ -22,12 +22,10 @@ export const OuterDiv = styled.div<{
   placement: PlacementType;
 }>`
   width: ${({ wide, arrayLength = 8 }) =>
-    wide ? calcWidth(arrayLength) + "px" : "136px"};
+    wide ? calcWidth(arrayLength) + "px" : "150px"};
   height: ${({ hideHeader, wide, arrayLength }) =>
     calcHeight(arrayLength, hideHeader, wide)}px;
   position: fixed;
-  right: 0;
-  left: 0;
   z-index: 2000000000; // This is what Google does, so it's okay.
 
   border-radius: 4px;
@@ -40,7 +38,7 @@ export const OuterDiv = styled.div<{
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   opacity: ${({ visible }) => (visible ? "1" : "0")};
   transition: opacity 0.15s;
-  animation: ${({ visible }) => visible && "PopoverBounce 0.1s ease-in 1"};
+  animation: ${({ visible }) => visible && "drop 0.1s ease-in 1"};
 
   ${({ triggerTransformValues, placement, arrayLength, hideHeader, wide }) =>
     triggerTransformValues &&
@@ -50,14 +48,14 @@ export const OuterDiv = styled.div<{
           triggerTransformValues,
           // This solution assumes the height and width are calculated based on the standards I defined,
           // not on actual height/width, which could be changed by the user.
-          wide ? calcWidth(arrayLength) : 136,
+          wide ? calcWidth(arrayLength) : 150,
           calcHeight(arrayLength, hideHeader, wide),
           placement
         )}
       );
     `}
 
-  @keyframes PopoverBounce {
+  @keyframes drop {
     from {
       height: ${({ hideHeader, wide, arrayLength }) =>
         calcHeight(arrayLength, hideHeader, wide) - 20}px;
@@ -92,6 +90,9 @@ export const CloseButton = styled.span<{ wide?: boolean }>`
 
 export const Header = styled.div`
   border-bottom: 1px solid lightGrey;
+  width: calc(100% - 16px);
+  left: 8px;
+  position: relative;
 `;
 
 export const SelectionContainer = styled.div`
