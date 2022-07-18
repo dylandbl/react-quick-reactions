@@ -2,7 +2,6 @@ import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const Grid = styled.div`
-  margin-top: 150px;
   // Width = five items + four gaps + padding + border
   width: calc(116px * 5 + 8px * 4 + 26px);
   padding: 12px;
@@ -30,9 +29,9 @@ export const GridItem = styled.div<{ hasTitle?: boolean }>`
 
 export const EmojiDisplay = styled.div`
   position: relative;
-  top: -177px;
+  top: -170px;
   width: 297px;
-  height: 122px;
+  height: 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;

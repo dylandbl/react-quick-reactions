@@ -4,7 +4,7 @@ import { PlacementType } from "../../../../../lib/esm/types";
 import { commentEmojis } from "../../../utils/sampleData";
 import { Grid, GridItem, EmojiDisplay } from "./GridShowcaseStyles";
 
-const gridItems: { title: PlacementType | null; show: boolean }[] = [
+export const gridItems: { title: PlacementType | null; show: boolean }[] = [
   {
     title: null,
     show: false,
@@ -140,6 +140,7 @@ export const GridShowcase = () => {
 
   return (
     <>
+      <h2>Try it out</h2>
       <Grid>
         {gridItemsArray.map((item, index) => {
           return (
