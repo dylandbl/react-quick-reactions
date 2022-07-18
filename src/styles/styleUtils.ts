@@ -17,7 +17,7 @@ export const calcHeight = (
 ) => {
   if (hideHeader) {
     if (wide || arrayLength < 5) return 35;
-    else return 68;
+    else return 64;
   } else {
     if (wide || arrayLength < 5) return 54;
     // Default popup height is 90.
@@ -31,63 +31,57 @@ export const calculatePopupTranslate = (
   popupHeight: number,
   placement: PlacementType
 ) => {
-  // x is relative to the view, y is relative to the trigger element.
   let x = 0;
   let y = 0;
   const margin = 10;
 
   if (placement === "top-start") {
-    x = triggerTransformValues.left;
     y = triggerTransformValues.height * -1 - popupHeight - margin;
   }
   if (placement === "top") {
-    x =
-      triggerTransformValues.left +
-      (triggerTransformValues.width - popupWidth) / 2;
+    x = (triggerTransformValues.width - popupWidth) / 2;
     y = triggerTransformValues.height * -1 - popupHeight - margin;
   }
   if (placement === "top-end") {
-    x = triggerTransformValues.x + (triggerTransformValues.width - popupWidth);
+    x = triggerTransformValues.width - popupWidth;
     y = triggerTransformValues.height * -1 - popupHeight - margin;
   }
+
   if (placement === "left-start") {
-    x = triggerTransformValues.x - popupWidth - margin;
+    x -= popupWidth + margin;
     y = triggerTransformValues.height * -1;
   }
   if (placement === "left") {
-    x = triggerTransformValues.x - popupWidth - margin;
+    x -= popupWidth + margin;
     y = (popupHeight / 2 + triggerTransformValues.height / 2) * -1;
   }
   if (placement === "left-end") {
-    x = triggerTransformValues.x - popupWidth - margin;
+    x -= popupWidth + margin;
     y = popupHeight * -1;
   }
 
   if (placement === "right-start") {
-    x = triggerTransformValues.left + triggerTransformValues.width + margin;
+    x = triggerTransformValues.width + margin;
     y = triggerTransformValues.height * -1;
   }
   if (placement === "right") {
-    x = triggerTransformValues.left + triggerTransformValues.width + margin;
+    x = triggerTransformValues.width + margin;
     y = (popupHeight / 2 + triggerTransformValues.height / 2) * -1;
   }
   if (placement === "right-end") {
-    x = triggerTransformValues.left + triggerTransformValues.width + margin;
+    x = triggerTransformValues.width + margin;
     y = popupHeight * -1;
   }
 
   if (placement === "bottom-start") {
-    x = triggerTransformValues.left;
     y = margin;
   }
   if (placement === "bottom") {
-    x =
-      triggerTransformValues.left +
-      (triggerTransformValues.width - popupWidth) / 2;
+    x = (triggerTransformValues.width - popupWidth) / 2;
     y = margin;
   }
   if (placement === "bottom-end") {
-    x = triggerTransformValues.x + (triggerTransformValues.width - popupWidth);
+    x = triggerTransformValues.width - popupWidth;
     y = margin;
   }
 
