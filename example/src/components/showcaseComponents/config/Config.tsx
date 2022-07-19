@@ -1,7 +1,11 @@
 import { useState } from "react";
 import QuickReactions from "react-quick-reactions";
-import { PlacementType } from "../../../../../lib/esm/types";
-import { emojiArr1, positionOptions } from "../../../utils/sampleData";
+import { AnimationType, PlacementType } from "../../../../../lib/esm/types";
+import {
+  animationOptions,
+  emojiArr1,
+  positionOptions,
+} from "../../../utils/sampleData";
 import { GridItem } from "../gridShowcase/GridShowcaseStyles";
 import { ConfigButton, ConfigContainer, InputsContainer } from "./ConfigStyles";
 
@@ -14,6 +18,7 @@ export const Config = () => {
   const [hideCloseButton, setHideCloseButton] = useState(false);
   const [wide, setWide] = useState(false);
   const [disableClickAwayToClose, setDisableClickAwayToClose] = useState(false);
+  const [animation, setAnimation] = useState<AnimationType>("drop");
 
   return (
     <>
@@ -24,6 +29,7 @@ export const Config = () => {
         onClose={() => {
           setShowPopup(false);
         }}
+        animation={animation}
         reactionsArray={emojiArr1}
         hideHeader={hideHeader}
         hideCloseButton={hideCloseButton}
@@ -58,6 +64,23 @@ export const Config = () => {
             onChange={(e) => setPlacement(e.target.value as PlacementType)}
           >
             {positionOptions.map((item, index) => (
+              <option key={item + "-" + index}>{item}</option>
+            ))}
+          </select>
+          <br />
+
+          <label htmlFor="animation" className="dropdownLabel">
+            Animation
+          </label>
+          <br />
+          <select
+            id="animation"
+            name="animation"
+            className="dropdownLabel"
+            value={animation}
+            onChange={(e) => setAnimation(e.target.value as AnimationType)}
+          >
+            {animationOptions.map((item, index) => (
               <option key={item + "-" + index}>{item}</option>
             ))}
           </select>

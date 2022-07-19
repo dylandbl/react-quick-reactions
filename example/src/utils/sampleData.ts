@@ -1,4 +1,4 @@
-import { PlacementType } from "../../../lib/esm/types";
+import { AnimationType, PlacementType } from "../../../lib/esm/types";
 
 export const emojiArr1 = [
   {
@@ -98,4 +98,11 @@ export const positionOptions: PlacementType[] = [
   "bottom-start",
   "bottom",
   "bottom-end",
+];
+
+export const animationOptions: AnimationType[] = [
+  "drop",
+  "fade",
+  "flip",
+  "none",
 ];
