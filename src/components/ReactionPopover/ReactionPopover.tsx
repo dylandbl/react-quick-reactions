@@ -6,6 +6,7 @@ import {
   SelectionContainer,
   ReactionElement,
   Overlay,
+  PopupPositioningWrapper,
 } from "../../styles/ReactionPopoverStyles";
 import { RQRProps } from "../../types";
 import { CloseSvg } from "../svg/CloseSvg";
@@ -27,6 +28,7 @@ interface PopoverProps extends RQRProps {
 
 export const ReactionPopover = (props: PopoverProps) => {
   const {
+    animation = "drop",
     isVisible = false,
     onClickReaction,
     closeButton,
@@ -54,68 +56,77 @@ export const ReactionPopover = (props: PopoverProps) => {
   return (
     <>
       {!disableClickAwayToClose && isVisible && <Overlay onClick={onClose} />}
-      <OuterDiv
+      <PopupPositioningWrapper
         triggerTransformValues={triggerTransformValues}
         placement={placement}
-        className={
-          "rqr-outer-div" + (outerDivClassName ? " " + outerDivClassName : "")
-        }
-        visible={isVisible}
         hideHeader={hideHeader}
         wide={wide}
         arrayLength={reactionsArray.length}
       >
-        {!hideHeader && (
-          <Header
-            className={
-              "rqr-header" + (headerClassName ? " " + headerClassName : "")
-            }
-          >
-            {popoverHeader}
-          </Header>
-        )}
-
-        {!hideCloseButton && (
-          <CloseButton
-            className={
-              "rqr-close-button" +
-              (closeButtonClassName ? " " + closeButtonClassName : "")
-            }
-            onClick={onClose}
-            wide={wide}
-          >
-            {closeButton ? closeButton : <CloseSvg />}
-          </CloseButton>
-        )}
-        <SelectionContainer
+        <OuterDiv
           className={
-            "rqr-selection-container" +
-            (selectionContainerClassName
-              ? " " + selectionContainerClassName
-              : "")
+            "rqr-outer-div" + (outerDivClassName ? " " + outerDivClassName : "")
           }
+          visible={isVisible}
+          hideHeader={hideHeader}
+          wide={wide}
+          arrayLength={reactionsArray.length}
+          animation={animation}
         >
-          {reactionsArray?.map((item, index) => (
-            <ReactionElement
+          {!hideHeader && (
+            <Header
               className={
-                "rqr-reaction-element" +
-                (reactionElementClassName ? " " + reactionElementClassName : "")
+                "rqr-header" + (headerClassName ? " " + headerClassName : "")
               }
-              key={item?.name + "-" + index}
-              id={item?.id}
-              onClick={(e) => onClickReaction(e.target as Element)}
-              onMouseEnter={
-                changeHeaderOnReactionElemHover
-                  ? () => setPopoverHeader(item?.name)
-                  : () => undefined
-              }
-              onMouseLeave={resetHeader}
             >
-              {item?.content}
-            </ReactionElement>
-          ))}
-        </SelectionContainer>
-      </OuterDiv>
+              {popoverHeader}
+            </Header>
+          )}
+
+          {!hideCloseButton && (
+            <CloseButton
+              className={
+                "rqr-close-button" +
+                (closeButtonClassName ? " " + closeButtonClassName : "")
+              }
+              onClick={onClose}
+              wide={wide}
+            >
+              {closeButton ? closeButton : <CloseSvg />}
+            </CloseButton>
+          )}
+          <SelectionContainer
+            className={
+              "rqr-selection-container" +
+              (selectionContainerClassName
+                ? " " + selectionContainerClassName
+                : "")
+            }
+          >
+            {reactionsArray?.map((item, index) => (
+              <ReactionElement
+                className={
+                  "rqr-reaction-element" +
+                  (reactionElementClassName
+                    ? " " + reactionElementClassName
+                    : "")
+                }
+                key={item?.name + "-" + index}
+                id={item?.id}
+                onClick={(e) => onClickReaction(e.target as Element)}
+                onMouseEnter={
+                  changeHeaderOnReactionElemHover
+                    ? () => setPopoverHeader(item?.name)
+                    : () => undefined
+                }
+                onMouseLeave={resetHeader}
+              >
+                {item?.content}
+              </ReactionElement>
+            ))}
+          </SelectionContainer>
+        </OuterDiv>
+      </PopupPositioningWrapper>
     </>
   );
 };

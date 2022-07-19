@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { TransformValuesType } from "../components/ReactionPopover/ReactionPopover";
-import { PlacementType } from "../types";
+import { AnimationType, PlacementType } from "../types";
 import { calculatePopupTranslate, calcWidth, calcHeight } from "./styleUtils";
 
 export const Overlay = styled.div`
@@ -13,13 +13,36 @@ export const Overlay = styled.div`
   z-index: 2000000000; // This is what Google does, so it's okay.
 `;
 
-export const OuterDiv = styled.div<{
-  visible: boolean;
+// Separating the placement calculation from the rest of OuterDiv allows me to use transform for animations.
+export const PopupPositioningWrapper = styled.div<{
   hideHeader?: boolean;
   wide?: boolean;
   arrayLength: number;
   triggerTransformValues?: TransformValuesType;
   placement: PlacementType;
+}>`
+  ${({ triggerTransformValues, placement, arrayLength, hideHeader, wide }) =>
+    triggerTransformValues &&
+    css`
+      transform: translate(
+        ${calculatePopupTranslate(
+          triggerTransformValues,
+          // This solution assumes the height and width are calculated based on the standards I defined,
+          // not on actual height/width, which could be changed by the user.
+          wide ? calcWidth(arrayLength) : 150,
+          calcHeight(arrayLength, hideHeader, wide),
+          placement
+        )}
+      );
+    `}
+`;
+
+export const OuterDiv = styled.div<{
+  visible: boolean;
+  hideHeader?: boolean;
+  wide?: boolean;
+  arrayLength: number;
+  animation: AnimationType;
 }>`
   width: ${({ wide, arrayLength = 8 }) =>
     wide ? calcWidth(arrayLength) + "px" : "150px"};
@@ -38,22 +61,9 @@ export const OuterDiv = styled.div<{
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   opacity: ${({ visible }) => (visible ? "1" : "0")};
   transition: opacity 0.15s;
-  animation: ${({ visible }) => visible && "drop 0.1s ease-in 1"};
 
-  ${({ triggerTransformValues, placement, arrayLength, hideHeader, wide }) =>
-    triggerTransformValues &&
-    css`
-      transform: translate(
-        ${calculatePopupTranslate(
-          triggerTransformValues,
-          // This solution assumes the height and width are calculated based on the standards I defined,
-          // not on actual height/width, which could be changed by the user.
-          wide ? calcWidth(arrayLength) : 150,
-          calcHeight(arrayLength, hideHeader, wide),
-          placement
-        )}
-      );
-    `}
+  animation: ${({ visible, animation }) =>
+    visible && `${animation} 0.1s ease-in 1`};
 
   @keyframes drop {
     from {
@@ -63,6 +73,35 @@ export const OuterDiv = styled.div<{
     to {
       height: ${({ hideHeader, wide, arrayLength }) =>
         calcHeight(arrayLength, hideHeader, wide) + 10}px;
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes flip {
+    0% {
+      perspective: 500px;
+      transform: rotateX(70deg);
+    }
+    100% {
+      perspective: 500px;
+      transform: rotateX(-35deg);
+    }
+  }
+
+  @keyframes zoom {
+    from {
+      transform: scale(0, 0);
+    }
+    to {
+      transform: scale(1, 1);
     }
   }
 `;

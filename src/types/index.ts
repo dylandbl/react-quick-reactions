@@ -18,7 +18,10 @@ export type PlacementType =
   | "bottom"
   | "bottom-end";
 
+export type AnimationType = "drop" | "fade" | "flip" | "zoom" | "none";
+
 export interface RQRProps {
+  animation?: AnimationType;
   changeHeaderOnReactionElemHover?: boolean;
   closeButton?: string | JSX.Element;
   closeButtonClassName?: string;
