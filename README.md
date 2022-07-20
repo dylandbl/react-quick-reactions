@@ -1,6 +1,12 @@
 # react-quick-reactions
 
-A lightweight popup component for quick reactions and emojis, à la GitHub's reaction popup or Facebook's "likes".
+<img src="https://user-images.githubusercontent.com/48745406/179853953-35c8bdf8-fad1-4377-a2cf-8f757f75c9dd.png" alt="Screenshot of react-quick-reactions" align="right">
+
+✨ **Try it out:** https://dylandbl.github.io/react-quick-reactions ✨
+
+A lightweight, customizable popup component for quick reactions and emojis, à la GitHub's reaction popup or Facebook's "likes".
+
+<img src="https://user-images.githubusercontent.com/48745406/179854484-3c7495ef-c447-45b6-a550-c688587d03fd.png" alt="Screenshot of react-quick-reactions" >
 
 ## Installation
 
@@ -14,7 +20,7 @@ Or with yarn:
 yarn add react-quick-reactions
 ```
 
-## Example implementation
+## Example use
 ```TSX
 import { useState } from 'react';
 
@@ -65,7 +71,7 @@ const App = () => {
 | `onClose`                         | `() => void`                | -             | Function called on popup close.                              |
 | `placement`                       | [`PlacementType`](#placementtype) | `"bottom-start"` | Positions the popup relative to the `trigger`.      |
 | `reactionsArray`                  | [`ReactionObj[]`](#reactionobj) | -         | Array of emojis.                                             |
-| `wide`                            | `boolean`                   | -             | Makes the popup wide instead of tall. Eight emojis wide by default. |
+| `wide`                            | `boolean`                   | -             | Makes the popup wide instead of tall. Up to eight emojis wide, by default. |
 | `closeButtonClassName`            | `string`                    | -             | Optional classes for the close button span.                  |
 | `outerDivClassName`               | `string`                    | -             | Optional classes for the popup container div.                |
 | `reactionElementClassName`        | `string`                    | -             | Optional classes for the emoji spans.                        |
