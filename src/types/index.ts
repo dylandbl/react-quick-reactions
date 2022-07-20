@@ -31,7 +31,7 @@ export interface RQRProps {
   hideCloseButton?: boolean;
   hideHeader?: boolean;
   isVisible: boolean;
-  onClickReaction: (event?: Element) => void;
+  onClickReaction: (event: Element) => void;
   onClose: () => void;
   outerDivClassName?: string;
   placement?: PlacementType;

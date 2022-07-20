@@ -27,7 +27,7 @@ export const InputsContainer = styled.div<{ show: boolean }>`
   ${({ show }) =>
     show
       ? css`
-          height: 150px;
+          height: 176px;
         `
       : css`
           height: 0;
