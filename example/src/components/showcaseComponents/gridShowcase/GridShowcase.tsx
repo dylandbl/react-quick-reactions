@@ -1,7 +1,7 @@
 import { useState } from "react";
 import QuickReactions from "react-quick-reactions";
 import { PlacementType } from "../../../../../lib/esm/types";
-import { commentEmojis } from "../../../utils/sampleData";
+import { gridEmojis } from "../../../utils/sampleData";
 import { Grid, GridItem, EmojiDisplay } from "./GridShowcaseStyles";
 
 export const gridItems: { title: PlacementType | null; show: boolean }[] = [
@@ -140,18 +140,18 @@ export const GridShowcase = () => {
 
   return (
     <>
-      <h2>Try it out</h2>
+      <h2>Try it</h2>
       <Grid>
         {gridItemsArray.map((item, index) => {
           return (
             <QuickReactions
               key={item?.title + index.toString()}
               onClickReaction={(element) => {
-                setCurrentEmoji(element?.textContent);
+                setCurrentEmoji(element.textContent);
               }}
               isVisible={item.show}
               onClose={() => handleVisibility(item.title, false)}
-              reactionsArray={commentEmojis}
+              reactionsArray={gridEmojis}
               placement={item?.title ? item.title : undefined}
               hideHeader
               hideCloseButton
