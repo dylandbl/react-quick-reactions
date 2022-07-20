@@ -10,7 +10,7 @@ export const Overlay = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2000000000; // This is what Google does, so it's okay.
+  z-index: 500;
 `;
 
 // Separating the placement calculation from the rest of OuterDiv allows me to use transform for animations.
@@ -21,6 +21,9 @@ export const PopupPositioningWrapper = styled.div<{
   triggerTransformValues?: TransformValuesType;
   placement: PlacementType;
 }>`
+  position: fixed;
+  z-index: 501;
+
   ${({ triggerTransformValues, placement, arrayLength, hideHeader, wide }) =>
     triggerTransformValues &&
     css`
@@ -48,8 +51,6 @@ export const OuterDiv = styled.div<{
     wide ? calcWidth(arrayLength) + "px" : "150px"};
   height: ${({ hideHeader, wide, arrayLength }) =>
     calcHeight(arrayLength, hideHeader, wide)}px;
-  position: fixed;
-  z-index: 2000000000; // This is what Google does, so it's okay.
 
   border-radius: 4px;
   border: 1px solid #c6d6eb;
