@@ -54,7 +54,7 @@ export const emojiArr2 = [
   },
 ];
 
-export const commentEmojis = [
+export const gridEmojis = [
   {
     name: "Thumbs up",
     content: "👍",
@@ -82,6 +82,41 @@ export const commentEmojis = [
   {
     name: "Liftoff",
     content: "🚀",
+  },
+];
+
+export const commentEmojis = [
+  {
+    name: "Thumbs up",
+    content: "👍",
+  },
+  {
+    name: "Thumbs down",
+    content: "👎",
+  },
+  {
+    name: "Love",
+    content: "❤️",
+  },
+  {
+    name: "Smiling",
+    content: "😄",
+  },
+  {
+    name: "Shocked",
+    content: "😲",
+  },
+  {
+    name: "Angry",
+    content: "😡",
+  },
+  {
+    name: "Thinking",
+    content: "🤔",
+  },
+  {
+    name: "Slick",
+    content: "😎",
   },
 ];
 
