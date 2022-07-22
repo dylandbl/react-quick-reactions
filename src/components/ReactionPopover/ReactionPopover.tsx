@@ -28,7 +28,7 @@ interface PopoverProps extends RQRProps {
 
 export const ReactionPopover = (props: PopoverProps) => {
   const {
-    animation = "drop",
+    animation = "fade",
     isVisible = false,
     onClickReaction,
     closeButton,
