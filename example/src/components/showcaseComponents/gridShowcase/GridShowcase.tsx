@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import QuickReactions from "react-quick-reactions";
 import { PlacementType } from "../../../../../lib/esm/types";
 import { gridEmojis } from "../../../utils/sampleData";
@@ -113,30 +113,33 @@ export const GridShowcase = () => {
     ""
   );
 
-  const handleVisibility = (title: string | null, show: boolean) => {
-    if (!title || show === null) return;
-    const gridItemsArrayCopy = gridItemsArray;
+  const handleVisibility = useCallback(
+    (title: string | null, show: boolean) => {
+      if (show === null) return;
+      const gridItemsArrayCopy = gridItemsArray;
 
-    // Get the index of the item to update and create an updated object.
-    const itemToUpdateIndex = gridItemsArrayCopy.findIndex(
-      (item) => item.title === title
-    );
-    const updatedItem = {
-      title: gridItemsArrayCopy[itemToUpdateIndex]?.title,
-      show,
-    };
+      // Get the index of the item to update and create an updated object.
+      const itemToUpdateIndex = gridItemsArrayCopy.findIndex(
+        (item) => item.title === title
+      );
+      const updatedItem = {
+        title: gridItemsArrayCopy[itemToUpdateIndex]?.title,
+        show,
+      };
 
-    // Remove the itemToUpdate from gridItemsArrayCopy.
-    const beforeSlice = gridItemsArrayCopy.slice(0, itemToUpdateIndex);
-    const afterSlice = gridItemsArrayCopy.slice(
-      itemToUpdateIndex + 1,
-      gridItemsArrayCopy.length
-    );
-    // Splice it into the new array.
-    const updatedArray = [...beforeSlice, updatedItem, ...afterSlice];
+      // Remove the itemToUpdate from gridItemsArrayCopy.
+      const beforeSlice = gridItemsArrayCopy.slice(0, itemToUpdateIndex);
+      const afterSlice = gridItemsArrayCopy.slice(
+        itemToUpdateIndex + 1,
+        gridItemsArrayCopy.length
+      );
+      // Splice it into the new array.
+      const updatedArray = [...beforeSlice, updatedItem, ...afterSlice];
 
-    setGridItemsArray(updatedArray);
-  };
+      setGridItemsArray(updatedArray);
+    },
+    [gridItemsArray]
+  );
 
   return (
     <>
@@ -148,13 +151,12 @@ export const GridShowcase = () => {
               key={item?.title + index.toString()}
               onClickReaction={(element) => {
                 setCurrentEmoji(element.textContent);
+                handleVisibility(item.title, false);
               }}
               isVisible={item.show}
               onClose={() => handleVisibility(item.title, false)}
               reactionsArray={gridEmojis}
               placement={item?.title ? item.title : undefined}
-              hideHeader
-              hideCloseButton
               trigger={
                 <GridItem
                   hasTitle={Boolean(item.title)}
