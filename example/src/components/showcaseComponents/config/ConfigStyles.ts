@@ -1,38 +1,34 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const ConfigContainer = styled.div`
-  margin-top: 24px;
   // Same as grid.
   width: 638px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 12px;
+  grid-template-areas:
+    "config  button"
+    "codeblock  codeblock";
+
+  // Inputs container
+  div:first-of-type {
+    grid-area: config;
+  }
+  // Button
+  span:first-of-type {
+    grid-area: button;
+    place-self: center;
+  }
+  // Codeblock
+  div:nth-of-type(2) {
+    grid-area: codeblock;
+  }
 `;
 
-export const ConfigButton = styled.div`
-  cursor: pointer;
-  color: #0645ad;
-  font-size: 0.9rem;
-  :hover {
-    text-decoration: underline;
-  }
-  :active {
-    color: #faa700;
-  }
-`;
-
-export const InputsContainer = styled.div<{ show: boolean }>`
+export const InputsContainer = styled.div`
   background: white;
-  overflow: hidden;
-  margin-bottom: 10px;
-  width: 100%;
-  ${({ show }) =>
-    show
-      ? css`
-          height: 176px;
-        `
-      : css`
-          height: 0;
-        `}
-  transition: height 0.15s linear;
+
   label {
     margin-left: 4px;
     &.textInputLabel {

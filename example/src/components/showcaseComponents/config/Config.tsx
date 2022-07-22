@@ -6,11 +6,11 @@ import {
   emojiArr1,
   positionOptions,
 } from "../../../utils/sampleData";
+import { Codeblock } from "../codblock/Codeblock";
 import { GridItem } from "../gridShowcase/GridShowcaseStyles";
-import { ConfigButton, ConfigContainer, InputsContainer } from "./ConfigStyles";
+import { ConfigContainer, InputsContainer } from "./ConfigStyles";
 
 export const Config = () => {
-  const [showConfig, setShowConfig] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   // Config states.
   const [placement, setPlacement] = useState<PlacementType>("right");
@@ -19,39 +19,13 @@ export const Config = () => {
   const [wide, setWide] = useState(false);
   const [disableClickAwayToClose, setDisableClickAwayToClose] = useState(false);
   const [animation, setAnimation] = useState<AnimationType>("drop");
+  const [emojiArrLength, setEmojiArrLength] = useState(8);
 
   return (
     <>
-      <h2 style={{ marginBottom: "32px" }}>Customize it</h2>
-      <QuickReactions
-        onClickReaction={() => {}}
-        isVisible={showPopup}
-        onClose={() => {
-          setShowPopup(false);
-        }}
-        animation={animation}
-        reactionsArray={emojiArr1}
-        hideHeader={hideHeader}
-        hideCloseButton={hideCloseButton}
-        placement={placement}
-        wide={wide}
-        disableClickAwayToClose={disableClickAwayToClose}
-        trigger={
-          <GridItem
-            hasTitle
-            onClick={() => {
-              setShowPopup(!showPopup);
-            }}
-          >
-            Click me!
-          </GridItem>
-        }
-      />
+      <h2 style={{ marginTop: "32px" }}>Configure it</h2>
       <ConfigContainer>
-        <ConfigButton onClick={() => setShowConfig(!showConfig)}>
-          Configure
-        </ConfigButton>
-        <InputsContainer show={showConfig}>
+        <InputsContainer>
           <label htmlFor="placement" className="dropdownLabel">
             Placement
           </label>
@@ -88,14 +62,14 @@ export const Config = () => {
 
           <input
             type="checkbox"
-            id="widePopup"
-            name="widePopup"
-            checked={wide}
+            id="hideHeader"
+            name="hideHeader"
+            checked={hideHeader}
             onChange={(e) => {
-              setWide(e.target.checked);
+              setHideHeader(e.target.checked);
             }}
           />
-          <label htmlFor="widePopup">Wide popup</label>
+          <label htmlFor="hideHeader">Hide header</label>
           <br />
 
           <input
@@ -112,18 +86,6 @@ export const Config = () => {
 
           <input
             type="checkbox"
-            id="hideHeader"
-            name="hideHeader"
-            checked={hideHeader}
-            onChange={(e) => {
-              setHideHeader(e.target.checked);
-            }}
-          />
-          <label htmlFor="hideHeader">Hide header</label>
-          <br />
-
-          <input
-            type="checkbox"
             id="disableClickAwayToClose"
             name="disableClickAwayToClose"
             checked={disableClickAwayToClose}
@@ -135,7 +97,69 @@ export const Config = () => {
             Disable clicking away to close
           </label>
           <br />
+
+          <input
+            type="checkbox"
+            id="widePopup"
+            name="widePopup"
+            checked={wide}
+            onChange={(e) => {
+              setWide(e.target.checked);
+            }}
+          />
+          <label htmlFor="widePopup">Wide popup</label>
+          <br />
+
+          <label htmlFor="arrayLength">Emoji array length</label>
+          <br />
+          <input
+            type="range"
+            id="arrayLength"
+            name="arrayLength"
+            min={0}
+            max={8}
+            value={emojiArrLength}
+            onChange={(e) => {
+              setEmojiArrLength(Number(e.target.value));
+            }}
+          />
+          <br />
         </InputsContainer>
+        <QuickReactions
+          onClickReaction={() => {}}
+          isVisible={showPopup}
+          onClose={() => setShowPopup(false)}
+          animation={animation}
+          reactionsArray={emojiArr1.slice(0, emojiArrLength)}
+          hideHeader={hideHeader}
+          hideCloseButton={hideCloseButton}
+          placement={placement}
+          wide={wide}
+          disableClickAwayToClose={disableClickAwayToClose}
+          trigger={
+            <GridItem hasTitle onClick={() => setShowPopup(!showPopup)}>
+              Click me!
+            </GridItem>
+          }
+        />
+        <Codeblock>
+          {`<QuickReactions
+  onClickReaction={() => {}}
+  isVisible={isVisible}
+  onClose={() => setIsVisible(false)}
+  trigger={
+    <button onClick={() => setIsVisible(!isVisible)}>
+      Click me!
+    </button>
+  }`}
+          {placement !== "bottom-start" ? `\n  placement={"${placement}"}` : ""}
+          {animation !== "drop" ? `\n  animation={"${animation}"}` : ""}
+          {hideHeader ? `\n  hideHeader` : ""}
+          {hideCloseButton ? `\n  hideCloseButton` : ""}
+          {disableClickAwayToClose ? `\n  disableClickAwayToClose` : ""}
+          {wide ? `\n  wide` : ""}
+          {`\n/>`}
+        </Codeblock>
       </ConfigContainer>
     </>
   );
