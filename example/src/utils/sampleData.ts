@@ -72,6 +72,10 @@ export const gridEmojis = [
     content: "👀",
   },
   {
+    name: "Partying",
+    content: "🥳",
+  },
+  {
     name: "Thinking",
     content: "🤔",
   },
