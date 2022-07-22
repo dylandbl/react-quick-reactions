@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "homepage": "https://dylandbl.github.io/react-quick-reactions",
   "private": true,
   "dependencies": {
