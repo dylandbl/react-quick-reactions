@@ -21,7 +21,7 @@ export const PopupPositioningWrapper = styled.div<{
   triggerTransformValues?: TransformValuesType;
   placement: PlacementType;
 }>`
-  position: fixed;
+  position: absolute;
   z-index: 501;
 
   ${({ triggerTransformValues, placement, arrayLength, hideHeader, wide }) =>
