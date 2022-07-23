@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 
-export const HeaderDiv = styled.div`
-  height: 40px;
+export const HeaderDiv = styled.div<{ isMobile?: boolean }>`
+  // Makes room for the title to wrap on a small screen.
+  height: ${({ isMobile }) => (isMobile ? 62 : 40)}px;
   padding: 0 10px;
   // 100% - padding.
   width: 100%;

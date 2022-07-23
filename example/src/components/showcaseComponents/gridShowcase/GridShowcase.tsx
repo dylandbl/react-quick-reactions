@@ -1,117 +1,22 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import QuickReactions from "react-quick-reactions";
-import { PlacementType } from "../../../../../lib/esm/types";
+import { gridItems, mobileGridItems } from "../../../utils/gridShowcaseArr";
+import { useWindowMediaQuery } from "../../../utils/hooks";
 import { gridEmojis } from "../../../utils/sampleData";
 import { Grid, GridItem, EmojiDisplay } from "./GridShowcaseStyles";
 
-export const gridItems: { title: PlacementType | null; show: boolean }[] = [
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: "top-start",
-    show: false,
-  },
-  {
-    title: "top",
-    show: false,
-  },
-  {
-    title: "top-end",
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: "left-start",
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: "right-start",
-    show: false,
-  },
-  {
-    title: "left",
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: "right",
-    show: false,
-  },
-  {
-    title: "left-end",
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: "right-end",
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-  {
-    title: "bottom-start",
-    show: false,
-  },
-  {
-    title: "bottom",
-    show: false,
-  },
-  {
-    title: "bottom-end",
-    show: false,
-  },
-  {
-    title: null,
-    show: false,
-  },
-];
-
 export const GridShowcase = () => {
+  const isMobile = useWindowMediaQuery() < 750;
   const [gridItemsArray, setGridItemsArray] = useState(gridItems);
   const [currentEmoji, setCurrentEmoji] = useState<string | null | undefined>(
     ""
   );
+
+  // Update the grid array to use based on screen size.
+  useEffect(() => {
+    if (isMobile) setGridItemsArray(mobileGridItems);
+    else setGridItemsArray(gridItems);
+  }, [isMobile]);
 
   const handleVisibility = useCallback(
     (title: string | null, show: boolean) => {
@@ -123,7 +28,7 @@ export const GridShowcase = () => {
         (item) => item.title === title
       );
       const updatedItem = {
-        title: gridItemsArrayCopy[itemToUpdateIndex]?.title,
+        title: gridItemsArrayCopy[itemToUpdateIndex].title,
         show,
       };
 
@@ -144,30 +49,28 @@ export const GridShowcase = () => {
   return (
     <>
       <h2>Try it</h2>
-      <Grid>
-        {gridItemsArray.map((item, index) => {
-          return (
-            <QuickReactions
-              key={item?.title + index.toString()}
-              onClickReaction={(element) => {
-                setCurrentEmoji(element.textContent);
-                handleVisibility(item.title, false);
-              }}
-              isVisible={item.show}
-              onClose={() => handleVisibility(item.title, false)}
-              reactionsArray={gridEmojis}
-              placement={item?.title ? item.title : undefined}
-              trigger={
-                <GridItem
-                  hasTitle={Boolean(item.title)}
-                  onClick={() => handleVisibility(item.title, true)}
-                >
-                  {item.title}
-                </GridItem>
-              }
-            />
-          );
-        })}
+      <Grid isMobile={isMobile}>
+        {gridItemsArray.map((item, index) => (
+          <QuickReactions
+            key={item?.title + index.toString()}
+            onClickReaction={(element) => {
+              setCurrentEmoji(element.textContent);
+              handleVisibility(item.title, false);
+            }}
+            isVisible={item.show}
+            onClose={() => handleVisibility(item.title, false)}
+            reactionsArray={gridEmojis}
+            placement={item?.title ? item.title : undefined}
+            trigger={
+              <GridItem
+                hasTitle={Boolean(item.title)}
+                onClick={() => handleVisibility(item.title, true)}
+              >
+                {item.title}
+              </GridItem>
+            }
+          />
+        ))}
       </Grid>
       <EmojiDisplay>{currentEmoji}</EmojiDisplay>
     </>

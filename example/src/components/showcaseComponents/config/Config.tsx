@@ -1,6 +1,7 @@
 import { useState } from "react";
 import QuickReactions from "react-quick-reactions";
 import { AnimationType, PlacementType } from "../../../../../lib/esm/types";
+import { useWindowMediaQuery } from "../../../utils/hooks";
 import {
   animationOptions,
   emojiArr1,
@@ -11,6 +12,7 @@ import { GridItem } from "../gridShowcase/GridShowcaseStyles";
 import { ConfigContainer, InputsContainer } from "./ConfigStyles";
 
 export const Config = () => {
+  const isMobile = useWindowMediaQuery() < 750;
   const [showPopup, setShowPopup] = useState(false);
   // Config states.
   const [placement, setPlacement] = useState<PlacementType>("right");
@@ -21,10 +23,12 @@ export const Config = () => {
   const [animation, setAnimation] = useState<AnimationType>("drop");
   const [emojiArrLength, setEmojiArrLength] = useState(8);
 
+  console.log(isMobile);
+
   return (
     <>
       <h2 style={{ marginTop: "32px" }}>Configure it</h2>
-      <ConfigContainer>
+      <ConfigContainer isMobile={isMobile}>
         <InputsContainer>
           <label htmlFor="placement" className="dropdownLabel">
             Placement

@@ -1,15 +1,27 @@
+import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const ConfigContainer = styled.div`
-  // Same as grid.
-  width: 638px;
-
+export const ConfigContainer = styled.div<{ isMobile: boolean }>`
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-row-gap: 12px;
-  grid-template-areas:
-    "config  button"
-    "codeblock  codeblock";
+
+  ${({ isMobile }) =>
+    isMobile
+      ? css`
+          grid-template-areas:
+            "button"
+            "config"
+            "codeblock";
+          width: 100%;
+          padding: 0 6px;
+        `
+      : css`
+          width: 600px;
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-areas:
+            "config button"
+            "codeblock codeblock";
+        `}
 
   // Inputs container
   div:first-of-type {

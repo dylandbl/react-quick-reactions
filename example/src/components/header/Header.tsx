@@ -9,11 +9,13 @@ import { NpmLogoSvg } from "../svgs/LogoSvgs";
 import QuickReactions from "react-quick-reactions";
 import { useState } from "react";
 import { emojiArr2 } from "../../utils/sampleData";
+import { useWindowMediaQuery } from "../../utils/hooks";
 
 export const Header = () => {
   const [showHeaderQuickReactions, setShowHeaderQuickReactions] =
     useState(false);
   const [selectedEmoji, setSelectedEmoji] = useState("" as string | null);
+  const isMobile = useWindowMediaQuery() < 450;
 
   const handleReactionSelect = (emoji?: Element) => {
     if (emoji) setSelectedEmoji(emoji?.textContent);
@@ -21,7 +23,7 @@ export const Header = () => {
   };
 
   return (
-    <HeaderDiv>
+    <HeaderDiv isMobile={isMobile}>
       <div>
         <HeaderEmojiContainer>{selectedEmoji}</HeaderEmojiContainer>
         <QuickReactions

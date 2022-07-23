@@ -1,15 +1,17 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const Grid = styled.div`
-  // Width = five items + four gaps + padding + border
-  width: calc(116px * 5 + 8px * 4 + 26px);
-  padding: 12px;
-
-  border: 1px solid grey;
+export const Grid = styled.div<{ isMobile?: boolean }>`
+  ${({ isMobile }) =>
+    !isMobile &&
+    css`
+      padding: 12px;
+      border: 1px solid grey;
+    `}
 
   display: grid;
-  grid-template-columns: 116px 116px 116px 116px 116px;
+  grid-template-columns: ${({ isMobile }) =>
+    isMobile ? "116px 116px 116px" : "116px 116px 116px 116px 116px"};
   grid-gap: 8px;
 `;
 

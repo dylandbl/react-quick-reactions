@@ -11,7 +11,8 @@ export const Pre = styled.pre<{ show: boolean }>`
   position: relative;
   margin: 0;
 
-  width: 100%;
+  overflow: auto;
+
   padding: 4px 12px 8px;
   overflow-x: hidden;
 
