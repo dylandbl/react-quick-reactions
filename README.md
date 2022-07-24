@@ -60,6 +60,7 @@ const App = () => {
 
 | Prop name                         | Type                        | Default value | Description |
 | --------------------------------- | --------------------------- | ------------- | ----------- |
+| `animation`                       | [`AnimationType`](#animationtype)| `"fade"` | The animation effect used when the popup is displayed. |
 | `changeHeaderOnReactionElemHover` | `boolean`                   | `true`        | When `true`, the popup's header updates on emoji mouseover to display the emoji's name. |
 | `closeButton`                     | `string \| JSX.Element`     | -             | String or element to replace the default close button.       |
 | `disableClickAwayToClose`         | `boolean`                   | -             | Disables closing by clicking away from the popup.            |
@@ -77,8 +78,13 @@ const App = () => {
 | `reactionElementClassName`        | `string`                    | -             | Optional classes for the emoji spans.                        |
 | `selectionContainerClassName`     | `string`                    | -             | Optional classes for the div containing the array of emojis. |
 
+### `AnimationType`
+```TS
+type AnimationType = "drop" | "fade" | "flip" | "zoom" | "none";
+```
+
 ### `PlacementType`
-```TSX
+```TS
 type PlacementType =
   | "top-start"
   | "top"
@@ -96,7 +102,7 @@ type PlacementType =
 
 ### `ReactionObj`
 
-```TSX
+```TS
 type ReactionObj = {
   id?: string;  // Used as element's #id.
   name: string; // Displayed in popup header.
@@ -105,7 +111,7 @@ type ReactionObj = {
 ```
 
 #### Example
-```TSX
+```TS
 const emojiArr1 = [
   {
     id: "laughing",
