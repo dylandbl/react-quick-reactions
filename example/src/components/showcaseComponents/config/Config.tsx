@@ -18,7 +18,7 @@ export const Config = () => {
   const [hideCloseButton, setHideCloseButton] = useState(false);
   const [wide, setWide] = useState(false);
   const [disableClickAwayToClose, setDisableClickAwayToClose] = useState(false);
-  const [animation, setAnimation] = useState<AnimationType>("drop");
+  const [animation, setAnimation] = useState<AnimationType>("fade");
   const [emojiArrLength, setEmojiArrLength] = useState(8);
 
   return (
@@ -153,7 +153,7 @@ export const Config = () => {
     </button>
   }`}
           {placement !== "bottom-start" ? `\n  placement={"${placement}"}` : ""}
-          {animation !== "drop" ? `\n  animation={"${animation}"}` : ""}
+          {animation !== "fade" ? `\n  animation={"${animation}"}` : ""}
           {hideHeader ? `\n  hideHeader` : ""}
           {hideCloseButton ? `\n  hideCloseButton` : ""}
           {disableClickAwayToClose ? `\n  disableClickAwayToClose` : ""}
