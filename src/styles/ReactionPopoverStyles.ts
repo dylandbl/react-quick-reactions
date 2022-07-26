@@ -133,6 +133,7 @@ export const Header = styled.div`
   width: calc(100% - 16px);
   left: 8px;
   position: relative;
+  color: black;
 `;
 
 export const SelectionContainer = styled.div`
