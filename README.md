@@ -22,7 +22,8 @@ yarn add react-quick-reactions
 
 ## Example use
 ```TSX
-import { useState } from 'react';
+import { useState } from "react";
+import QuickReactions from "react-quick-reactions";
 
 const App = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -30,8 +31,8 @@ const App = () => {
   return (
     <div className="App">
       <QuickReactions
-        onClickEmoji={(e) => {
-          window.alert(e?.textContent);
+        onClickEmoji={(emoji) => {
+          window.alert(emoji.content);
         }}
         isVisible={isVisible}
         onClose={() => setIsVisible(false)}
@@ -42,7 +43,7 @@ const App = () => {
           }
         ]}
         trigger={
-         <button
+          <button
             onClick={() => {
               setIsVisible(true);
             }}
