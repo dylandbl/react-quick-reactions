@@ -2,7 +2,6 @@ export type ReactionObj = {
   id?: string;
   name: string;
   content: string | JSX.Element;
-  [key: string]: any;
 };
 
 export type PlacementType =
