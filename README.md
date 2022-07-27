@@ -31,21 +31,21 @@ const App = () => {
   return (
     <div className="App">
       <QuickReactions
-        onClickEmoji={(emoji) => {
-          window.alert(emoji.content);
-        }}
-        isVisible={isVisible}
-        onClose={() => setIsVisible(false)}
         reactionsArray={[
           {
             name: "Laughing",
             content: "😂",
           }
         ]}
+        onClickEmoji={(emoji) => {
+          window.alert(emoji.content);
+        }}
+        isVisible={isVisible}
+        onClose={() => setIsVisible(false)}
         trigger={
           <button
             onClick={() => {
-              setIsVisible(true);
+              setIsVisible(!isVisible);
             }}
           >
             Show
