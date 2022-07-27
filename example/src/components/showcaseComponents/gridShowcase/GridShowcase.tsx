@@ -1,8 +1,11 @@
 import { useCallback, useState } from "react";
 import QuickReactions from "react-quick-reactions";
-import { PlacementType } from "../../../../../lib/esm/types";
 import { gridEmojis } from "../../../utils/sampleData";
 import { Grid, GridItem, EmojiDisplay } from "./GridShowcaseStyles";
+import {
+  ReactionObj,
+  PlacementType,
+} from "react-quick-reactions/lib/esm/types/index";
 
 export const gridItems: { title: PlacementType | null; show: boolean }[] = [
   {
@@ -109,9 +112,7 @@ export const gridItems: { title: PlacementType | null; show: boolean }[] = [
 
 export const GridShowcase = () => {
   const [gridItemsArray, setGridItemsArray] = useState(gridItems);
-  const [currentEmoji, setCurrentEmoji] = useState<string | null | undefined>(
-    ""
-  );
+  const [currentEmoji, setCurrentEmoji] = useState<ReactionObj["content"]>("");
 
   const handleVisibility = useCallback(
     (title: string | null, show: boolean) => {
@@ -150,7 +151,7 @@ export const GridShowcase = () => {
             <QuickReactions
               key={item?.title + index.toString()}
               onClickReaction={(element) => {
-                setCurrentEmoji(element.textContent);
+                setCurrentEmoji(element.content);
                 handleVisibility(item.title, false);
               }}
               isVisible={item.show}

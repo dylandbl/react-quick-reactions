@@ -1,5 +1,6 @@
 import { useState } from "react";
 import QuickReactions from "react-quick-reactions";
+import { ReactionObj } from "react-quick-reactions/lib/esm/types/index";
 import { commentEmojis } from "../../../utils/sampleData";
 import { SmileSvg } from "../../svgs/SmileSvg";
 import {
@@ -35,12 +36,12 @@ export const CustomComment = ({
   const [visible, setVisible] = useState(false);
   const [reactionArrayState, setReactionArrayState] = useState(reactionArray);
 
-  const handleClickReaction = (emojiElement?: Element) => {
+  const handleClickReaction = (emojiElement?: ReactionObj) => {
     setVisible(false);
     const reactionArrayStateCopy = reactionArrayState;
 
     const index = reactionArrayStateCopy.findIndex(
-      (item) => item.content === emojiElement?.textContent
+      (item) => item.content === emojiElement?.content
     );
 
     reactionArrayStateCopy[index].count += 1;
