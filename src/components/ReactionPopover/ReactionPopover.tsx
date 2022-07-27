@@ -113,7 +113,7 @@ export const ReactionPopover = (props: PopoverProps) => {
                 }
                 key={item?.name + "-" + index}
                 id={item?.id}
-                onClick={(e) => onClickReaction(e.target as Element)}
+                onClick={() => onClickReaction(item)}
                 onMouseEnter={
                   changeHeaderOnReactionElemHover
                     ? () => setPopoverHeader(item?.name)

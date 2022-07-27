@@ -1,4 +1,4 @@
-type ReactionObj = {
+export type ReactionObj = {
   id?: string;
   name: string;
   content: string | JSX.Element;
@@ -31,7 +31,7 @@ export interface RQRProps {
   hideCloseButton?: boolean;
   hideHeader?: boolean;
   isVisible: boolean;
-  onClickReaction: (event: Element) => void;
+  onClickReaction: (reaction: ReactionObj) => void;
   onClose: () => void;
   outerDivClassName?: string;
   placement?: PlacementType;

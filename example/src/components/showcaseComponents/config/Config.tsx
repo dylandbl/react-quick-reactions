@@ -126,7 +126,7 @@ export const Config = () => {
           <br />
         </InputsContainer>
         <QuickReactions
-          onClickReaction={() => {}}
+          onClickReaction={(item) => console.log(item)}
           isVisible={showPopup}
           onClose={() => setShowPopup(false)}
           animation={animation}

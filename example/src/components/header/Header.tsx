@@ -7,16 +7,18 @@ import {
 import { GitHubLogoSvg } from "../svgs/LogoSvgs";
 import { NpmLogoSvg } from "../svgs/LogoSvgs";
 import QuickReactions from "react-quick-reactions";
+import { ReactionObj } from "react-quick-reactions/lib/esm/types/index";
 import { useState } from "react";
 import { emojiArr2 } from "../../utils/sampleData";
 
 export const Header = () => {
   const [showHeaderQuickReactions, setShowHeaderQuickReactions] =
     useState(false);
-  const [selectedEmoji, setSelectedEmoji] = useState("" as string | null);
+  const [selectedEmoji, setSelectedEmoji] =
+    useState<ReactionObj["content"]>("");
 
-  const handleReactionSelect = (emoji?: Element) => {
-    if (emoji) setSelectedEmoji(emoji?.textContent);
+  const handleReactionSelect = (emoji?: ReactionObj) => {
+    if (emoji) setSelectedEmoji(emoji?.content);
     setShowHeaderQuickReactions(false);
   };
 
