@@ -37,11 +37,11 @@ const App = () => {
             content: "😂",
           }
         ]}
-        onClickEmoji={(emoji) => {
-          window.alert(emoji.content);
-        }}
         isVisible={isVisible}
         onClose={() => setIsVisible(false)}
+        onClickReaction={(reaction) => {
+          window.alert(reaction.content);
+        }}
         trigger={
           <button
             onClick={() => {
