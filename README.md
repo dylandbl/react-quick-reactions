@@ -2,7 +2,7 @@
 
 <img src="https://user-images.githubusercontent.com/48745406/179853953-35c8bdf8-fad1-4377-a2cf-8f757f75c9dd.png" alt="Screenshot of react-quick-reactions" align="right">
 
-✨ **Try it out:** https://dylandbl.github.io/react-quick-reactions ✨
+✨ **Try it out:** [dylandbl.github.io/react-quick-reactions](https://dylandbl.github.io/react-quick-reactions) ✨
 
 A lightweight, customizable popup component for quick reactions and emojis, à la GitHub's reaction popup or Facebook's "likes".
 
