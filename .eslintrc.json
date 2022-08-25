@@ -6,11 +6,9 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/recommended",
-    "react-hooks",
-    "plugin:jsx-a11y/recommended",
-    "@emotion",
-    "plugin:prettier/recommended"
+    "plugin:jsx-a11y/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -20,19 +18,30 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react", "@typescript-eslint", "jsx-a11y", "@emotion"],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "jsx-a11y",
+    "@emotion",
+    "react-hooks"
+  ],
   "rules": {
     "semi": ["error", "always"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
-    "no-ternary": "error",
+    "no-nested-ternary": "error",
     "no-lonely-if": "error",
     "no-else-return": "error",
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "dot-notation": "error",
-    "react-jsx-key": "error",
+    "react/jsx-key": "error",
     "jsx-a11y/anchor-is-valid": "error",
     "jsx-a11y/click-events-have-key-events": "error",
     "jsx-a11y/no-static-element-interactions": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 }
