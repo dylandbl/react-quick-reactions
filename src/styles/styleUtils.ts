@@ -17,12 +17,12 @@ export const calcHeight = (
 ) => {
   if (hideHeader) {
     if (wide || arrayLength < 5) return 35;
-    else return 64;
-  } else {
+    return 64;
+  } 
     if (wide || arrayLength < 5) return 54;
     // Default popup height is 90.
-    else return 90;
-  }
+    return 90;
+  
 };
 
 export const calculatePopupTranslate = (
